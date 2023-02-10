@@ -1,0 +1,357 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&family=Roboto:wght@100;300;400;500&display=swap");
+
+/* :root {
+    --colorWhite: #ffffff;
+    --colorBlack: #000000;
+    --colorRed: red;
+    --fontSize-sm: 16px;
+    --fontFamily: 'Arial, Helvetica, sans-serif';
+    --fontTitle: 'Arial';
+    --fontBody: 'Helvetica';
+} */
+
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* SignIn Component */
+.signInContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.signInContainer img {
+    width: 30%;
+    padding-left: 50px;
+}
+
+.signInContainer h1 {
+    text-align: center;
+    font-size: 25px;
+}
+
+.signInContainer h3 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.signInContainer input {
+    background-color: #eaf0fe;
+    border-width: 0;
+    border-radius: .25rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 200px;
+    padding-left: 10px;
+    text-align: start;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.signInButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signInButton button {
+    background: #273269;
+    color: white;
+    border-radius: .25rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.emailSignIn {
+    padding-bottom: 10px;
+}
+
+.passwordSignIn {
+    padding-bottom: 10px;
+}
+
+.signInForm button {
+    padding: 5px 60px;
+    margin-bottom: 10px;
+}
+
+/* h1 {
+    color: var(--colorRed);
+} */
+
+/* SignUp Component */
+
+/* Home view */
+
+.contentHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.taskWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    align-items: center;
+    max-width: 1340px;
+    margin: auto;
+    gap: 10px;
+}
+
+/* New Task */
+.contentNewTask input {
+    width: 600px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    border-radius: .25rem;
+    border-width: 1px;
+}
+
+.contentNewTask textarea {
+    margin-bottom: 20px;
+    border-radius: .25rem;
+    width: 600px;
+}
+
+.input-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-button button {
+    background: #2d376dcb;
+    color: white;
+    padding: 1rem 10rem;
+    border-radius: .75rem;
+    font-weight: 600;
+    font-size: 20px;
+    border-width: 0;
+}
+
+/* .contentNewTask button {
+    display: flex;
+    align-items: center;
+} */
+
+/* Task Container */
+.taskContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    border-width: 1px;
+    border-radius: .75rem;
+    border-color: rgb(0, 0, 0);
+    background-color: rgba(255, 0, 0, 0.24);
+    padding: 1rem;
+    max-width: 400px;
+    margin-bottom: 5px;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px 0px #88888898;
+}
+
+.taskContainer h4 {
+    font-weight: 400;
+    height: 30px;
+    max-height: 30px;
+
+}
+
+.taskContainer .taskIcon {
+    width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 2rem;
+    color: rgba(46, 41, 41, 0.61);
+}
+
+.taskContainer .taskIcon:hover {
+    width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 2rem;
+    color: black;
+}
+
+.taskContainer .taskEditInputs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 40px;
+}
+
+.taskContainer {
+    margin-bottom: 40px;
+}
+
+/* Account View */
+.accountContainer {
+    margin-top: 20px;
+    margin: auto;
+    border: 2px solid rgba(0, 0, 0, 0.151);
+    height: 740px;
+    width: 600px;
+    border-radius: .5rem;
+    box-shadow: 0px 6px 8px 0px #88888898;
+    padding: 0 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.accountContainer button {
+    width: 50%;
+    max-width: 50%;
+    align-self: center;
+    padding: 8px;
+    background: #e68522;
+    color: white;
+    font-weight: 500;
+    border-width: 0;
+    border-radius: .25rem;
+}
+
+.accountContainer i {
+    margin-top: 10px;
+    padding-left: 550px;
+    font-size: 20px;
+}
+
+.accauntContainerHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    margin: 0;
+}
+
+.accauntContainerHeader .labelContainer {
+    background: #e68522;
+    margin-top: 10px;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .25rem;
+}
+
+.accauntContainerHeader .imageButton {
+    color: white;
+}
+
+.accauntContainerHeader img {
+    height: 70%;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+.accauntContainerHeader h1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.accauntContainerData {
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.accauntContainerData label {
+    /* font-style: italic; */
+    font-size: 13px;
+}
+
+.accauntContainerData input {
+    width: 100%;
+    border-radius: .25rem;
+    background-color: #eaf0fe;
+    border-width: 0;
+    font-size: 16px;
+    padding: 4px 0 4px 0;
+    margin-bottom: 21.28px;
+    color: #474E68;
+}
+
+.accauntContainerData h4 {
+    margin-top: 5px;
+    font-weight: 500;
+    color: #474E68;
+}
+
+.accauntContainerDataLeft {
+    width: 200px;
+}
+
+.accauntContainerDataRight {
+    width: 200px;
+}
+
+/* Send Task */
+.sendTaskFlex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.sendTaskContainer {
+    height: 400px;
+    width: 600px;
+    box-shadow: 0px 6px 8px 0px #88888898;
+    border-radius: .75rem;
+    border-color: rgb(170, 170, 170);
+    padding: 15px;
+}
+
+.sendTaskContainer h1 {
+    text-align: center;
+}
+
+.sendTaskContainer label {
+    padding-right: 15px;
+    margin-bottom: 15px;
+}
+
+.sendTaskContainer input {
+    width: 80%;
+}
+
+/* Footer Bar */
+
+.footerBar {
+    height: 100px;
+    background-color: rgb(218, 212, 212);
+    bottom: 0;
+}
+
+.footerFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerFlex p {
+    margin-top: 30px;
+}
