@@ -9,7 +9,7 @@
     <div class="taskWrapper">
       <TaskItem class="taskContainer" v-for="task in tasks" :key="task.id" :task="task" />
     </div>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 

@@ -19,8 +19,7 @@
         <h4 v-if="!editData">{{ editLastName }}</h4>
         <input v-if="editData" type="text" v-model="editLastName">
         <label for="email">Email:</label>
-        <h4 v-if="!editData">{{ editEmail }}</h4>
-        <input v-if="editData" type="text" v-model="editEmail">
+        <h4>{{ editEmail }}</h4>
         <label for="phone">Phone:</label>
         <h4 v-if="!editData">{{ editPhone }}</h4>
         <input v-if="editData" type="text" v-model="editPhone">
@@ -106,10 +105,15 @@
       editNeighborhood.value,
       editZipCode.value,
       editCity.value,
-      editCountry.value 
+      editCountry.value, 
+      avatar_url.value
     )
     console.log("Profile Edited")
     editData.value = !editData.value
+  }
+
+  const editImageLocal = async(value) => {
+    await userStore.editImage(value)
   }
 
   async function signOut() {
@@ -131,12 +135,69 @@
 
   
   const uploadImage = async(e) => {
-    const chosenImage = document.getElementById("chooseImage")
-    console.log("In")
-    console.log(e.target.files[0])
-    supabase.storage.from("avatars").update(e.target.files[0])
+    const file = e.target.files[0];
+    try {
+      if(!file || file.length === 0) {
+      throw new Error("You must select a valid picture")
+      };
+
+    const fileExt = file.name.split(".").pop();
+    const userEmailImage = editEmail.value.split(".")[0];
+    const filePath = `${Math.random()}.${fileExt}`;
+
+    let {error:uploadError} = await supabase.storage.from("avatars").upload(filePath, file, {upsert:false});
+
+    if (uploadError) throw uploadError;
+    avatar_url.value = ("https://dzombwcfmrnpczmrbyej.supabase.co/storage/v1/object/public/avatars/" + filePath);
+    editImageLocal(avatar_url)
+    await downloadImage(filePath)
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      loading.value = false;
+    }
   }
 
+  const downloadImage = async (imgURL) => {
+  try {
+    const { data, error } = await supabase.storage
+      .from("avatars")
+      .download(avatar_url);
+    if (error) throw error;
+    src.value = URL.createObjectURL(data);
+  } catch (error) {
+    console.error("Error downloading image: ", error.message);
+  }
+};
+
+
+//   const uploadImage = async (e) => {
+//     const files = e.target.files;
+//     try {
+//         loading.value = true;
+//         if (!files || files.length === 0) {
+//         throw new Error("You must select an image to upload.");
+//         };
+
+//         const file = files[0];
+//         const fileExt = file.name.split(".").pop();
+//         const filePath = `${Math.random()}.${fileExt}`;
+
+//         let { error: uploadError } = await supabase.storage
+//         .from("avatars")
+//         .upload(filePath, file, {
+//           upsert: false
+//         });
+
+//         if (uploadError) throw uploadError;
+//         avatar_url.value = filePath;
+//         await downloadImage(filePath);
+//     } catch (error) {
+//         alert(error.message);
+//     } finally {
+//         loading.value = false;
+//     }
+// }
 
 
 </script>

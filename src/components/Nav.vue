@@ -10,10 +10,10 @@
           <router-link to="/">Task Manager</router-link>
         </li>
         <li>
-          <router-link to="/account">Profile</router-link>
+          <router-link to="/send">Send Task</router-link>
         </li>
         <li>
-          <router-link to="/send">Send Task</router-link>
+          <router-link to="/account">Profile</router-link>
         </li>
     </ul>
 

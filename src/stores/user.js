@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { supabase } from "../supabase";
+import { ref } from "vue"
 
 // Esta tienda utiliza el Options API
 export const useUserStore = defineStore("user", {
@@ -23,7 +24,7 @@ export const useUserStore = defineStore("user", {
       }
     },
 
-    async editProfile(name, last_name, email, phone, web_site, street_number, neighborhood, zip_code, city, country) {
+    async editProfile(name, last_name, email, phone, web_site, street_number, neighborhood, zip_code, city, country, avatar_url) {
       const { user, error } = await supabase.from("profiles").update({
         name: name,
         last_name: last_name,
@@ -34,7 +35,14 @@ export const useUserStore = defineStore("user", {
         neighborhood: neighborhood,
         zip_code: zip_code,
         city: city,
-        country: country
+        country: country,
+        avatar_url: avatar_url
+      }).match({ user_id: this.user.id })
+    },
+
+    async editImage(avatar_url) {
+      const { user, error } = await supabase.from("profiles").update({
+        avatar_url: avatar_url
       }).match({ user_id: this.user.id })
     },
 
