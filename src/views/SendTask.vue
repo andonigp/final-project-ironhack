@@ -53,15 +53,19 @@ const getUserId = async() => {
     console.log(sendTo.value)
     // useSendUser().fetchOtherUser(sendTo.value)
     // console.log(useSendUser().fetchOtherUser(sendTo.value))
-    sendToUser.value = await sendUser.fetchOtherUser(sendTo.value)
-    console.log(sendToUser.value)
-    await sendUser.registerSentTask(sendToUser.value, sendTitle.value, sendDue.value, sendDescription.value)
-    await sendUser.sendTask(sendToUser.value, sendTitle.value, sendDescription.value)
-    sendTo.value = "";
-    sendTitle.value = "";
-    sendDue.value = "";
-    sendDescription.value = "";
-    console.log("Your task has been sent.")
+    if (!sendTo || !sendTitle || !sendDue || !sendDescription) {
+        alert("You are missing information on your task setup. Please fill all the required information.")
+    } else {
+        sendToUser.value = await sendUser.fetchOtherUser(sendTo.value)
+        console.log(sendToUser.value)
+        await sendUser.registerSentTask(sendToUser.value, sendTitle.value, sendDue.value, sendDescription.value, sendTo.value)
+        await sendUser.sendTask(sendToUser.value, sendTitle.value, sendDescription.value)
+        sendTo.value = "";
+        sendTitle.value = "";
+        sendDue.value = "";
+        sendDescription.value = "";
+        console.log("Your task has been sent.")
+    }
 }
 
 const printUser = () => {
@@ -106,7 +110,7 @@ onUpdated(() => {
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: .25rem;
-    margin-bottom: 0px;
+    margin-bottom: 6px;
     color: white;
     padding-left: 90px;
 }

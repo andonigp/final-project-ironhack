@@ -2,7 +2,7 @@
 
     <div class="sentTaskTableElement">
         <i class="fas fa-trash-alt"></i>
-        <label class="sentToLabel" for="to">{{ sentTask.sentTo }}</label>
+        <label class="sentToLabel" for="to">{{ sentTask.asignedTo }}</label>
         <label class="dueDateLabel" for="due">{{ sentTask.due }}</label>
         <label class="titleLabel" for="title">{{ sentTask.title }}</label>
         <label class="completedLabel" for="is_complete">{{ sentTask.is_complete }}</label>
@@ -12,10 +12,14 @@
 </template>
 
 <script setup>
+import { onUpdated } from '@vue/runtime-core';
 import { useSendUser } from '../stores/sendUser';
-    const props = defineProps({
-        sentTask: Object,
-    });
+import { ref } from 'vue';
+const props = defineProps({
+    sentTask: Object,
+});
+
+
 
 
 </script>
