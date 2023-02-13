@@ -13,7 +13,7 @@ export const useSendUser = defineStore("sendUser", () => {
         return profile[0].user_id;
     };
 
-    const registerSentTask = async (sentTo, sentTitle, sentDue, sendDescription, userEmail) => {
+    const registerSentTask = async (sentTo, sentTitle, sentDue, sendDescription, userEmail, global_task_id) => {
         console.log("Registering task.")
         const { data, error } = await supabase.from("sentTasks").insert([
             {
@@ -24,11 +24,12 @@ export const useSendUser = defineStore("sendUser", () => {
                 description: sendDescription,
                 is_complete: false,
                 asignedTo: userEmail,
+                global_task_id: global_task_id,
             }
         ])
     };
 
-    const sendTask = async (sentTo, sentTitle, description) => {
+    const sendTask = async (sentTo, sentTitle, description, global_task_id) => {
         console.log("Sending Task");
         const { data, error } = await supabase.from("tasks").insert([
             {
@@ -36,6 +37,7 @@ export const useSendUser = defineStore("sendUser", () => {
                 title: sentTitle,
                 is_complete: false,
                 description: description,
+                global_task_id: global_task_id,
             }
         ])
     };

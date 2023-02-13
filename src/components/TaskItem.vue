@@ -12,8 +12,8 @@
             <button @click="editChanges">Submit Changes</button>
         </div>
         <div class="taskIcon">
-            <i class="fas fa-toggle-off" @click="changeStatus" v-if="statusIcon"></i>
-            <i class="fas fa-toggle-on" @click="changeStatus" v-if="!statusIcon"></i>
+            <i class="fas fa-toggle-off" @click="changeStatus" v-if="statusIcon === false"></i>
+            <i class="fas fa-toggle-on" @click="changeStatus" v-if="statusIcon === true"></i>
             <i class="fas fa-trash-alt" @click="deleteTask"></i>
             <i class="fas fa-edit" @click="etOptionSwap"></i>
         </div>
@@ -45,11 +45,14 @@ const deleteTask = async() => {
     await taskStore.deleteTask(props.task.id);
 };
 
-let statusIcon = ref(false)
+console.log(props.task.is_complete)
+
+let statusIcon = ref(props.task.is_complete)
 const changeStatus = async() => {
     await taskStore.changeTaskStatus(props.task.id, props.task.is_complete)
-    statusIcon = !statusIcon
+    statusIcon.value = !statusIcon.value
     console.log(statusIcon)
+    await taskStore.changeSentTaskStatus(props.task.global_task_id, props.task.is_complete)
 };
 
 const editedTitle = ref(props.task.title);

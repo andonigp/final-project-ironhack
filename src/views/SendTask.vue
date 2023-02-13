@@ -45,6 +45,9 @@ const sendTitle = ref('')
 const sendDue = ref('')
 const sendDescription = ref('')
 
+let global_task_id = ref('')
+global_task_id = Math.random()
+console.log(global_task_id)
 
 const sendToUser = ref('')
 const sendUser = useSendUser()
@@ -58,8 +61,9 @@ const getUserId = async() => {
     } else {
         sendToUser.value = await sendUser.fetchOtherUser(sendTo.value)
         console.log(sendToUser.value)
-        await sendUser.registerSentTask(sendToUser.value, sendTitle.value, sendDue.value, sendDescription.value, sendTo.value)
-        await sendUser.sendTask(sendToUser.value, sendTitle.value, sendDescription.value)
+
+        await sendUser.registerSentTask(sendToUser.value, sendTitle.value, sendDue.value, sendDescription.value, sendTo.value, global_task_id)
+        await sendUser.sendTask(sendToUser.value, sendTitle.value, sendDescription.value, global_task_id)
         sendTo.value = "";
         sendTitle.value = "";
         sendDue.value = "";
