@@ -1,6 +1,6 @@
 <template>
-    <h1>Add a new Task</h1>
     <div class="contentNewTask">
+        <h1>Add a new Task</h1>
         <div class="input-field">
             <input type="text" placeholder="Add a Task Title" v-model="name">
         </div>
@@ -8,7 +8,7 @@
             <textarea name="" id="" cols="90" rows="10" v-model="description" placeholder="Type a description for your task."></textarea>
         </div>
         <div class="input-button">
-            <button @click="addTask" class="button">Add New Task</button>
+            <button @click="addTask" class="button">Add Task</button>
         </div>
     </div>
     <div v-if="showErrorMessage">

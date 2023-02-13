@@ -19,6 +19,7 @@ body {
     padding: 0;
     overflow-x: hidden;
     min-height: 100vh;
+    background: #f2f4fc;
 }
 
 /* SignIn Component */
@@ -105,6 +106,11 @@ body {
     align-items: center;
 }
 
+.contentHome img {
+    position: absolute;
+    z-index: -12;
+}
+
 .taskWrapper {
     display: flex;
     flex-wrap: wrap;
@@ -116,6 +122,17 @@ body {
 }
 
 /* New Task */
+
+.contentNewTask {
+    border-width: 1px;
+    border-color: #273269;
+    background: white;
+    padding: 50px;
+    box-shadow: 0px 6px 8px 0px #88888898;
+    border-radius: .75rem;
+    border-color: rgb(170, 170, 170);
+}
+
 .contentNewTask input {
     width: 600px;
     font-size: 15px;
@@ -216,6 +233,7 @@ body {
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
+    background: white;
 }
 
 .accountContainer button {
@@ -320,21 +338,15 @@ body {
 }
 
 .sendTaskContainer {
-    height: 400px;
-    width: 600px;
     box-shadow: 0px 6px 8px 0px #88888898;
     border-radius: .75rem;
     border-color: rgb(170, 170, 170);
-    padding: 15px;
-}
-
-.sendTaskContainer h1 {
-    text-align: center;
+    padding: 50px;
 }
 
 .sendTaskContainer label {
     padding-right: 15px;
-    margin-bottom: 15px;
+    color: gray;
 }
 
 .sendTaskContainer input {

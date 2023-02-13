@@ -48,7 +48,7 @@
     <button v-if="editData" @click="editProfile">Submit Changes</button>
     <i @click="editDataToggle" class="fas fa-edit"></i>
   </div>
-  <Footer />
+  <!-- <Footer /> -->
 </template>
 
 <script setup>
@@ -169,36 +169,6 @@
     console.error("Error downloading image: ", error.message);
   }
 };
-
-
-//   const uploadImage = async (e) => {
-//     const files = e.target.files;
-//     try {
-//         loading.value = true;
-//         if (!files || files.length === 0) {
-//         throw new Error("You must select an image to upload.");
-//         };
-
-//         const file = files[0];
-//         const fileExt = file.name.split(".").pop();
-//         const filePath = `${Math.random()}.${fileExt}`;
-
-//         let { error: uploadError } = await supabase.storage
-//         .from("avatars")
-//         .upload(filePath, file, {
-//           upsert: false
-//         });
-
-//         if (uploadError) throw uploadError;
-//         avatar_url.value = filePath;
-//         await downloadImage(filePath);
-//     } catch (error) {
-//         alert(error.message);
-//     } finally {
-//         loading.value = false;
-//     }
-// }
-
 
 </script>
 

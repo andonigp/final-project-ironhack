@@ -39,5 +39,16 @@ export const useSendUser = defineStore("sendUser", () => {
         ])
     };
 
-    return { fetchOtherUser, registerSentTask, sendTask }
+    const sentTasksArr = ref(null)
+    const fecthSentTasks = async () => {
+        const { data: tasks } = await supabase
+            .from("sentTasks")
+            .select("*")
+            .order("id", { ascending: false })
+            .match({ user_id: useUserStore().user.id });
+        sentTasksArr.value = tasks;
+        return sentTasksArr.value;
+    }
+
+    return { fetchOtherUser, registerSentTask, sendTask, sentTasksArr, fecthSentTasks }
 })

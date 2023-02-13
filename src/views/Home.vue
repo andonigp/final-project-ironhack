@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <Nav />
-
+    
     <div class="contentHome"> 
       <NewTask />
       <h1>Tasks:</h1>
