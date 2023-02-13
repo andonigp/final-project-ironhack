@@ -14,7 +14,7 @@
         <div class="taskIcon">
             <i class="fas fa-toggle-off" @click="changeStatus" v-if="statusIcon === false"></i>
             <i class="fas fa-toggle-on" @click="changeStatus" v-if="statusIcon === true"></i>
-            <i class="fas fa-trash-alt" @click="deleteTask"></i>
+            <i class="fas fa-trash-alt" @click="deleteTask" v-if="isSent"></i>
             <i class="fas fa-edit" @click="etOptionSwap"></i>
         </div>
     </div>
@@ -45,13 +45,12 @@ const deleteTask = async() => {
     await taskStore.deleteTask(props.task.id);
 };
 
-console.log(props.task.is_complete)
+
 
 let statusIcon = ref(props.task.is_complete)
 const changeStatus = async() => {
     await taskStore.changeTaskStatus(props.task.id, props.task.is_complete)
     statusIcon.value = !statusIcon.value
-    console.log(statusIcon)
     await taskStore.changeSentTaskStatus(props.task.global_task_id, props.task.is_complete)
 };
 
@@ -63,6 +62,18 @@ const editChanges = async() => {
     etOption.value = !etOption.value
     audioAlert.play()
 }
+
+const isSent = ref(true)
+const isSentValue = ref(props.task.global_task_id)
+console.log(isSentValue.value)
+
+const isSentTask = async() => {
+    if (isSentValue.value > 0) {
+        isSent.value = !isSent.value
+    }
+}
+
+isSentTask()
 
 </script>
 
