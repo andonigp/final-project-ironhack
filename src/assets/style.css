@@ -594,3 +594,57 @@ textarea {
 .footerFlex p {
     margin-top: 30px;
 }
+
+/* --------------------------------------------------------------------------- */
+/* ------------------------------ MEDIA QUERIES ------------------------------ */
+/* --------------------------------------------------------------------------- */
+
+@media (max-width: 766px) {
+
+    /* ------------------------------ Navbar ------------------------------ */
+    nav {
+        justify-content: space-between;
+    }
+
+    .navImg {
+        width: 50%;
+        padding: 10px;
+    }
+
+
+    nav ul {
+        display: none;
+    }
+
+
+    /* ------------------------------ Home ------------------------------ */
+    .contentHome {
+        max-width: 80%;
+        align-items: center;
+        margin: auto;
+    }
+
+    .contentNewTask input {
+        width: 100%;
+    }
+
+    .contentNewTask textarea {
+        width: 100%;
+    }
+
+    .homeTaskTitle {
+        text-align: center;
+        max-width: 80%;
+    }
+
+    .taskWrapper {
+        /* display: flex;
+        flex-wrap: wrap; */
+        /* justify-content: space-between; */
+        align-items: center;
+        max-width: 80%;
+        /* margin: auto; */
+        gap: 0px;
+    }
+
+}
