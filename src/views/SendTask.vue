@@ -37,8 +37,7 @@ import sentItem from '../components/SentTaskReportItem.vue';
 import Nav from '../components/Nav.vue';
 import { useSendUser } from "../stores/sendUser";
 import {onUpdated, ref} from "vue"
-
-
+import { useUserStore } from '../stores/user';
 
 const sendTo = ref('')
 const sendTitle = ref('')
@@ -92,137 +91,6 @@ onUpdated(() => {
 </script>
 
 <style>
-.sendTaskContainer {
-    background: white;
-}
 
-
-.sentTasksTableFlex {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 80px;
-}
-
-.sentTaskTableHeader {
-    display: flex;
-    align-items: center;
-    width: 1000px;
-    height: 20px;
-    background: #5e6881;
-    margin: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: .25rem;
-    margin-bottom: 6px;
-    color: white;
-    padding-left: 90px;
-}
-
-.sendTaskSetup {
-    /* margin-left: 50px; */
-    margin-bottom: 20px;
-}
-
-.sentTaskTableHeader i {
-    padding-left: 15px;
-}
-
-.sentToH {
-    width: 200px;
-    white-space: nowrap;
-    text-align: start;
-    overflow: hidden;
-    text-overflow: hidden;
-    margin-left: 20px;
-    text-align: center;
-}
-
-.dueH {
-    width: 100px;
-    white-space: nowrap;
-    text-align: start;
-    overflow: hidden;
-    text-overflow: hidden;
-    margin-left: 15px;
-    text-align: center;
-}
-
-.titleH {
-    width: 400px;
-    white-space: nowrap;
-    text-align: start;
-    overflow: hidden;
-    text-overflow: hidden;
-    margin-left: 15px;
-    text-align: center;
-}
-
-#sendToInput {
-    width: 100%;
-    font-size: 15px;
-    margin-bottom: 20px;
-    border-radius: .25rem;
-    border-width: 1px;
-}
-
-#titleToInput {
-    width: 100%;
-    font-size: 15px;
-    margin-bottom: 20px;
-    border-radius: .25rem;
-    border-width: 1px;
-}
-
-#dueToInput {
-    max-width: 30%;
-    background: white;
-    border-width: 1px;
-    text-align: center;
-    margin-bottom: 20px;
-    border-radius: .25rem;
-    border-width: 1px;
-}
-
-#descriptionToInput {
-    background: white;
-    border-width: 1px;
-    width: 600px;
-    border-radius: .25rem;
-    border-width: 1px;
-}
-
-.sentTaskTableElement {
-    display: flex;
-
-    align-items: center;
-    width: 1000px;
-    height: 20px;
-    margin: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: .25rem;
-    margin-bottom: 0px;
-}
-
-.sentTasksTableFlex hr {
-    width: 1000px;
-}
-
-.sendTaskButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.sendTaskButton button {
-    background: #2d376dcb;
-    color: white;
-    padding: 1rem 10rem;
-    border-radius: .75rem;
-    font-weight: 600;
-    font-size: 20px;
-    border-width: 0;
-}
 
 </style>

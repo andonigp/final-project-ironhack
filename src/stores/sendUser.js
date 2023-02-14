@@ -25,6 +25,7 @@ export const useSendUser = defineStore("sendUser", () => {
                 is_complete: false,
                 asignedTo: userEmail,
                 global_task_id: global_task_id,
+                asignedBy: useUserStore().user.email,
             }
         ])
     };
@@ -38,6 +39,7 @@ export const useSendUser = defineStore("sendUser", () => {
                 is_complete: false,
                 description: description,
                 global_task_id: global_task_id,
+                asignedBy: useUserStore().user.email,
             }
         ])
     };

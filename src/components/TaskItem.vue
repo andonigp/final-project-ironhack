@@ -1,8 +1,13 @@
 <template>
 <div id="card" class="taskContainer whiteColor">
+    
+    <!-- <label class="labelAsignedBy" for="">By: {{ task.asignedBy }}</label> -->
     <div>
-        <p v-if="task.is_complete === false">Incomplete</p>
-        <p v-else>Complete</p>
+        <div class="cardHeader">
+            <p v-if="task.is_complete === false">Incomplete</p>
+            <p v-else>Complete</p>
+            <img id="cardImg" :src="avatar_Img ? avatar_Img : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'" alt="Profile picture">
+        </div>
         <h3 v-if="etOption === false">{{task.title}}</h3>
         <h4 v-if="etOption === false">{{ task.description }}</h4>
         <div class="taskEditInputs" v-if="etOption === true">
@@ -45,7 +50,19 @@ const deleteTask = async() => {
     await taskStore.deleteTask(props.task.id);
 };
 
+const avatar_Img = ref('')
+const getAvatar = async() => {
+    avatar_Img.value = await taskStore.asignedByImg(props.task.asignedBy)
+    avatar_Img.value = avatar_Img.value[0].avatar_url
+    
+}
 
+getAvatar()
+
+// onUpdated(() => {
+//   getAvatar();
+// //   console.log(avatar_Img.value)
+// })
 
 let statusIcon = ref(props.task.is_complete)
 const changeStatus = async() => {
@@ -110,6 +127,28 @@ isSentTask()
     background-color: rgba(0, 128, 0, 0.24);
 }
 
+.labelAsignedBy {
+    text-align: end;
+    font-size: 13px;
+}
+
+#cardImg {
+    height: 50px;
+    width: 50px;
+    max-height: 70%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 6px 8px 0px #88888898;
+    border: 1px solid rgba(0, 0, 0, 0.603);
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+}
 
 </style>
 

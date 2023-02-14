@@ -26,6 +26,7 @@ export const useTaskStore = defineStore("tasks", () => {
         title: title,
         is_complete: false,
         description: description,
+        asignedBy: useUserStore().user.email,
       },
     ]);
   };
@@ -55,5 +56,15 @@ export const useTaskStore = defineStore("tasks", () => {
     }).match({ id: id })
   }
 
-  return { tasksArr, fetchTasks, addTask, deleteTask, changeTaskStatus, editTakUpdate, changeSentTaskStatus };
+  const avatar_url = ref(null)
+  const asignedByImg = async (emailId) => {
+    const { data: avatar } = await supabase.from("profiles").select("*").match({ email: emailId });
+    avatar_url.value = avatar;
+    // console.log(avatar_url.value[0].avatar_url)
+    // console.log(avatar_url.value)
+    // return avatar_url.value[0].avatar_url
+    return avatar_url.value
+  }
+
+  return { tasksArr, fetchTasks, addTask, deleteTask, changeTaskStatus, editTakUpdate, changeSentTaskStatus, asignedByImg };
 });
