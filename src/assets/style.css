@@ -628,6 +628,10 @@ textarea {
         width: 100%;
     }
 
+    .contentNewTask {
+        width: 80%;
+    }
+
     .contentNewTask textarea {
         width: 100%;
     }
@@ -645,6 +649,26 @@ textarea {
         max-width: 80%;
         /* margin: auto; */
         gap: 0px;
+    }
+
+    .input-button button {
+        background: #2d376dcb;
+        color: white;
+        border-radius: .75rem;
+        font-weight: 400;
+        font-size: 100%;
+        border-width: 0;
+        width: 60%;
+        padding: 1rem;
+    }
+
+    .cardHeader {
+        flex-direction: column;
+    }
+
+    .taskContainer .taskIcon {
+        width: 100%;
+        min-width: 300px;
     }
 
 }
