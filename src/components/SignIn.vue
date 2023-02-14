@@ -14,7 +14,7 @@
           <input type="text" placeholder="User email" v-model="email">
         </div>
         <div class="passwordSignIn">
-          <input type="text" placeholder="Password" v-model="password">
+          <input type="password" placeholder="Password" v-model="password">
         </div>
         <div class="signInButton">
           <button type="submit"> Sign In</button>

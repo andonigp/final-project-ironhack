@@ -4,8 +4,8 @@
     
     <div class="contentHome"> 
       <NewTask />
-      <h1>Tasks:</h1>
     </div>
+    <h1 class="homeTaskTitle">Assigned tasks:</h1>
     <div class="taskWrapper">
       <TaskItem class="taskContainer" v-for="task in tasks" :key="task.id" :task="task" />
     </div>
