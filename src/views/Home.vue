@@ -3,7 +3,12 @@
     <Nav />
     
     <div class="contentHome"> 
-      <NewTask />
+      <div class="headerReorder">
+        <NewTask />
+        <div>
+          <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+      </div>
     </div>
     <h1 class="homeTaskTitle">Assigned tasks:</h1>
     <div class="taskWrapper">
@@ -14,18 +19,23 @@
 </template>
 
 <script setup>
-import { onUpdated, ref } from 'vue'
+import { onMounted, onUpdated, ref } from 'vue'
 import { useTaskStore } from "../stores/task";
 import { useRouter } from 'vue-router';
 import Nav from '../components/Nav.vue';
 import NewTask from '../components/NewTask.vue';
 import TaskItem from '../components/TaskItem.vue';
 import Footer from '../components/Footer.vue';
+import { supabase } from '../supabase';
+import { useUserStore } from '../stores/user';
+import { Chart } from "chart.js/auto"
 
 const taskStore = useTaskStore();
 
 // Variable para guardar las tareas de supabase
 const tasks = ref([]);
+const incompleteTasks = ref([])
+const completedTasks = ref([])
 
 // Creamos una función que conecte a la store para conseguir las tareas de supabase
 
@@ -33,18 +43,82 @@ const tasks = ref([]);
 
 const getTasks = async() => {
   tasks.value = await taskStore.fetchTasks();
+  incompleteTasks.value = await taskStore.fetchTasksInc()
+  completedTasks.value = await taskStore.fetchTasksComp()
+
+  
 };
 
 getTasks();
 
 onUpdated(() => {
   getTasks();
-  // console.log(tasks)
 })
+
+
+// -----------------------------------------COUNT DE ITEMS-----------------------------------------
+
+
+
+const labels = [
+  "Incomplete",
+  "Complete"
+]
+
+const data = {
+  labels: labels,
+  datasets: [{
+    label: "My currents tasks",
+    data: [2, 3],
+    backgroundColor: ['rgb(255, 99, 132)', 'rgb(75, 192, 124, 1)'],
+    // data: [completedTasks.value, incompleteTasks.value]
+  }]
+}
+
+const config = {
+  type: 'doughnut',
+  data: data,
+  options: {}
+};
+
+onMounted(() => {
+const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+)
+})
+
+
+
+
+
+// const countTotal = async() => {
+//   // totalTasks.value = tasks
+
+//   for (const task in tasks) {
+//     console.log(task[task)
+
+//   }
+
+//   // incompleteTasks.value = await supabase.from("tasks").select({user_id : useUserStore().user.id, is_complete : false })
+//   // completedTasks.value = await supabase.from("tasks").select("*").match({user_id : useUserStore().user.id, is_complete : false })
+  
+//   // console.log(incompleteTasks.value)
+//   // console.log("Total complte tasks: "+ completedTasks.value.length)
+// }
 
 </script>
 
+
+
 <style>
+.headerReorder {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
 
 </style>
 

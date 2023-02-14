@@ -18,6 +18,26 @@ export const useTaskStore = defineStore("tasks", () => {
     return tasksArr.value;
   };
 
+  const tasksArrInc = ref(null);
+  const fetchTasksInc = async () => {
+    const { data: tasks } = await supabase
+      .from("tasks")
+      .select("*")
+      .match({ user_id: useUserStore().user.id, is_complete: false });
+    tasksArrInc.value = tasks;
+    return tasksArrInc.value;
+  };
+
+  const tasksArrComp = ref(null);
+  const fetchTasksComp = async () => {
+    const { data: tasks } = await supabase
+      .from("tasks")
+      .select("*")
+      .match({ user_id: useUserStore().user.id, is_complete: true });
+    tasksArrComp.value = tasks;
+    return tasksArrComp.value;
+  };
+
   const addTask = async (title, description) => {
     console.log(useUserStore().user.id);
     const { data, error } = await supabase.from("tasks").insert([
@@ -72,5 +92,5 @@ export const useTaskStore = defineStore("tasks", () => {
     return avatar_url.value
   }
 
-  return { tasksArr, fetchTasks, addTask, deleteTask, changeTaskStatus, editTakUpdate, changeSentTaskStatus, asignedByImg, deleteTaskSent };
+  return { tasksArr, fetchTasks, addTask, deleteTask, changeTaskStatus, editTakUpdate, changeSentTaskStatus, asignedByImg, deleteTaskSent, fetchTasksInc, fetchTasksComp };
 });
