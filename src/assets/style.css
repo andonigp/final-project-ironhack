@@ -671,4 +671,8 @@ textarea {
         min-width: 300px;
     }
 
+    .taskContainer .taskIcon:hover {
+        width: 100%;
+    }
+
 }
