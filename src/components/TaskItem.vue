@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="card" class="taskContainer whiteColor">
     <div>
         <p v-if="task.is_complete === false">Incomplete</p>
         <p v-else>Complete</p>
@@ -9,7 +9,7 @@
             <h3>{{ editedTitle }}</h3>
             <input type="text" v-model="editedTitle">
             <textarea name="" id="" cols="30" rows="10" v-model="editedDescription"></textarea>
-            <button @click="editChanges">Submit Changes</button>
+            <button  @click="editChanges">Submit Changes</button>
         </div>
         <div class="taskIcon">
             <i class="fas fa-toggle-off" @click="changeStatus" v-if="statusIcon === false"></i>
@@ -75,9 +75,43 @@ const isSentTask = async() => {
 
 isSentTask()
 
+// const taskCardContainer = document.getElementById("card")
+// console.log(taskCardContainer)
+
+// const changeColor = async() => {
+//     if (props.task.is_complete === false) {
+//         taskCardContainer.classList.remove("greenColor")
+//         taskCardContainer.classList.add("redColor")
+//     } else {
+//         taskCardContainer.classList.remove("redColor")
+//         taskCardContainer.classList.add("greenColor")
+//     }
+// }
+
+// changeColor();
+
+// // onUpdated(() => {
+// //     changeColor()
+// // })
+
+
 </script>
 
-<style></style>
+<style>
+.whiteColor {
+    background-color: white;
+}
+
+.redColor {
+    background-color: rgba(255, 0, 0, 0.24);
+}
+
+.greenColor {
+    background-color: rgba(0, 128, 0, 0.24);
+}
+
+
+</style>
 
 <!--
 **Hints**
