@@ -37,6 +37,12 @@ export const useTaskStore = defineStore("tasks", () => {
     });
   };
 
+  const deleteTaskSent = async (id) => {
+    const { data, error } = await supabase.from("tasks").delete().match({
+      global_task_id: id,
+    });
+  };
+
   const changeTaskStatus = async (id, is_complete) => {
     const { data, error } = await supabase.from("tasks").update({ is_complete: !is_complete }).match({
       id: id,
@@ -66,5 +72,5 @@ export const useTaskStore = defineStore("tasks", () => {
     return avatar_url.value
   }
 
-  return { tasksArr, fetchTasks, addTask, deleteTask, changeTaskStatus, editTakUpdate, changeSentTaskStatus, asignedByImg };
+  return { tasksArr, fetchTasks, addTask, deleteTask, changeTaskStatus, editTakUpdate, changeSentTaskStatus, asignedByImg, deleteTaskSent };
 });

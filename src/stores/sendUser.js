@@ -65,7 +65,13 @@ export const useSendUser = defineStore("sendUser", () => {
         return userAsigned.value;
     }
 
+    const deleteSentTask = async (id) => {
+        const { data, error } = await supabase.from("sentTasks").delete().match({
+            global_task_id: id,
+        });
+    };
 
 
-    return { fetchOtherUser, registerSentTask, sendTask, sentTasksArr, fecthSentTasks, fecthAsignedUser }
+
+    return { fetchOtherUser, registerSentTask, sendTask, sentTasksArr, fecthSentTasks, fecthAsignedUser, deleteSentTask }
 })

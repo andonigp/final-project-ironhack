@@ -1,7 +1,7 @@
 <template>
 
     <div class="sentTaskTableElement">
-        <i class="fas fa-trash-alt"></i>
+        <i class="fas fa-trash-alt" @click="deleteSentTask" ></i>
         <label class="sentToLabel" for="to">{{ sentTask.asignedTo }}</label>
         <label class="dueDateLabel" for="due">{{ sentTask.due }}</label>
         <label class="titleLabel" for="title">{{ sentTask.title }}</label>
@@ -13,12 +13,20 @@
 
 <script setup>
 import { onUpdated } from '@vue/runtime-core';
+import { useTaskStore } from '../stores/task';
 import { useSendUser } from '../stores/sendUser';
 import { ref } from 'vue';
 const props = defineProps({
     sentTask: Object,
 });
 
+
+const deleteSentTask = async() => {
+    await useTaskStore().deleteTaskSent(props.sentTask.global_task_id)
+    console.log("Deleted from Tasks table.")
+    await useSendUser().deleteSentTask(props.sentTask.global_task_id)
+    console.log("Deleted drom Sent Tasks table.")
+}
 
 
 

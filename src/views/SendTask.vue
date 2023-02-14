@@ -38,6 +38,7 @@ import Nav from '../components/Nav.vue';
 import { useSendUser } from "../stores/sendUser";
 import {onUpdated, ref} from "vue"
 import { useUserStore } from '../stores/user';
+import { useTaskStore } from '../stores/task';
 
 const sendTo = ref('')
 const sendTitle = ref('')
@@ -87,6 +88,9 @@ onUpdated(() => {
     getSentTasks();
     // console.log(sentTasks.value)
 })
+
+
+
 
 </script>
 
