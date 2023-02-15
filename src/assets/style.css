@@ -260,6 +260,8 @@ body {
     font-weight: 400;
     height: 30px;
     max-height: 30px;
+    overflow: hidden;
+    text-overflow: hidden;
 
 }
 
@@ -300,6 +302,8 @@ body {
 textarea {
     border-radius: .25rem;
     border-width: 1px;
+    overflow: hidden;
+    text-overflow: hidden;
 }
 
 .taskContainer {

@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUpdated, ref } from 'vue'
+import { onMounted, onUpdated, ref, watch } from 'vue'
 import { useTaskStore } from "../stores/task";
 import { useRouter } from 'vue-router';
 import Nav from '../components/Nav.vue';
@@ -88,7 +88,9 @@ const myChart = new Chart(
 )
 })
 
-
+watch(tasks.value, async(newValue) =>{
+  console.log("Entro el watcher")
+})
 
 
 

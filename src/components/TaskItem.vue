@@ -21,6 +21,9 @@
             <i class="fas fa-toggle-on" @click="changeStatus" v-if="statusIcon === true"></i>
             <i class="fas fa-trash-alt" @click="deleteTask" v-if="isSent"></i>
             <i class="fas fa-edit" @click="etOptionSwap"></i>
+            <router-link :to="taskId">
+                <i class="fas fa-info-circle"></i>
+            </router-link>
         </div>
     </div>
 </div>
@@ -30,6 +33,8 @@
 import { onUpdated, reactive, ref, watch } from 'vue';
 import { useTaskStore } from '../stores/task';
 import { supabase } from '../supabase';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 const audioAlert = new Audio("../../assets/sounds/alert.mp3")
 
 const taskStore = useTaskStore();
@@ -42,6 +47,10 @@ const etOptionSwap = () => {
 const props = defineProps({
     task: Object,
 });
+
+
+const taskId = ref("/task/" + props.task.id)
+console.log(taskId.value)
 
 // Función para borrar la tarea a través de la store. El problema que tendremos aquí (y en NewTask.vue) es que cuando modifiquemos 
 // la base de datos los cambios no se verán reflejados en el v-for de Home.vue porque no estamos modificando la variable tasks guardada en Home. 
