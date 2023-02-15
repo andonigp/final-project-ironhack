@@ -92,5 +92,15 @@ export const useTaskStore = defineStore("tasks", () => {
     return avatar_url.value
   }
 
-  return { tasksArr, fetchTasks, addTask, deleteTask, changeTaskStatus, editTakUpdate, changeSentTaskStatus, asignedByImg, deleteTaskSent, fetchTasksInc, fetchTasksComp };
+  const tasksInformation = ref('');
+  const fetchTasksInformation = async (id) => {
+    const { data: tasks } = await supabase
+      .from("tasks")
+      .select("*")
+      .match({ id: id });
+    tasksInformation.value = tasks;
+    return tasksInformation.value;
+  };
+
+  return { tasksArr, fetchTasks, addTask, deleteTask, changeTaskStatus, editTakUpdate, changeSentTaskStatus, asignedByImg, deleteTaskSent, fetchTasksInc, fetchTasksComp, fetchTasksInformation };
 });
