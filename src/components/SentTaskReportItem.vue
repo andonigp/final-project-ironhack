@@ -6,7 +6,7 @@
         <label class="dueDateLabel" for="due">{{ sentTask.due }}</label>
         <label class="titleLabel" for="title">{{ sentTask.title }}</label>
         <label class="completedLabel" for="is_complete">{{ sentTask.is_complete }}</label>
-        <i class="fad fa-flashlight"></i>
+        <i class="fas fa-info-circle"></i>
     </div>
     <hr>
 </template>
