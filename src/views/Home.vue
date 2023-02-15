@@ -5,9 +5,7 @@
     <div class="contentHome"> 
       <div class="headerReorder">
         <NewTask />
-        <div>
-          <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
+        <Graph />
       </div>
     </div>
     <h1 class="homeTaskTitle">Assigned tasks:</h1>
@@ -28,7 +26,7 @@ import TaskItem from '../components/TaskItem.vue';
 import Footer from '../components/Footer.vue';
 import { supabase } from '../supabase';
 import { useUserStore } from '../stores/user';
-import { Chart } from "chart.js/auto"
+import Graph from "../components/GraphComponent.vue"
 
 const taskStore = useTaskStore();
 
@@ -60,33 +58,6 @@ onUpdated(() => {
 
 
 
-const labels = [
-  "Incomplete",
-  "Complete"
-]
-
-const data = {
-  labels: labels,
-  datasets: [{
-    label: "My currents tasks",
-    data: [2, 3],
-    backgroundColor: ['rgb(255, 99, 132)', 'rgb(75, 192, 124, 1)'],
-    // data: [completedTasks.value, incompleteTasks.value]
-  }]
-}
-
-const config = {
-  type: 'doughnut',
-  data: data,
-  options: {}
-};
-
-onMounted(() => {
-const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-)
-})
 
 watch(tasks.value, async(newValue) =>{
   console.log("Entro el watcher")
@@ -120,6 +91,12 @@ watch(tasks.value, async(newValue) =>{
   gap: 50px;
   flex-wrap: wrap;
 }
+
+/* #myChart {
+  box-shadow: 0px 6px 8px 0px #888888d3;
+  border-radius: 50%;
+  padding: 0;
+} */
 
 
 </style>

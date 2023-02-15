@@ -4,7 +4,11 @@
     <router-link to="/">
       <img src="../../assets/images/mind_blanco.png" alt="Company Logo" class="navImg">
     </router-link>
-
+    <label id = "navbar-toggle" class="navbar-toggle" for="toggle" @click="NavBarToggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+    </label>
     <ul>
         <li>
           <router-link to="/">Task Manager</router-link>
@@ -61,49 +65,26 @@ const signOut = async () => {
   } catch (error) {}
 };
 
+//  ------------------ HAMBURGUER MENU -----------------
+const hamburguer = document.getElementsByClassName(".navbar-toggle")
+const navMenu = document.querySelector("nav ul")
+
+console.log(hamburguer)
+console.log(navMenu)
+
+const NavBarToggle = async() => {
+  hamburguer.classList.toggle("active");
+}
+
+
+// hamburguer.addEventListener("click", () => {
+//     hamburguer.classList.toggle("active");
+//     navMenu.classList.toggle("active");
+// })
+
 </script>
 
 <style>
 
-nav {
-  background-color: #203267;
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  align-items: center;
-  color: white;
-  margin-bottom: 30px;
-}
 
-.navImg {
-  width: 70%;
-}
-
-nav ul {
-  list-style: none;
-  padding-inline-start: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-
-}
-
-nav ul li a {
-  text-decoration: none!important;
-  list-style: none!important;
-  color: white;
-}
-
-nav ul li a:hover {
-  font-weight: 600;
-}
-
-nav ul li button {
-  background: #f68520;
-  border-width: 0;
-  padding: 10px;
-  color: white;
-  border-radius: .25rem;
-}
 </style>

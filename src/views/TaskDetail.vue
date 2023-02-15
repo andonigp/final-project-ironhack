@@ -1,12 +1,37 @@
 <template>
     <Nav />
-    <h1>{{ taskTitle }}</h1>
-    <h4>{{ taskCreationDate }}</h4>
-    <h4>{{ taskCreationHour }}</h4>
-    <h4>{{ taskCreatedBy }}</h4>
-    <h4>{{ taskAsignedTo }}</h4>
-    <h5>{{ taskStatus }}</h5>
-    <p>{{ taskDescription }}</p>
+    <div class="taskCardDesc">
+        <div class="taskTitle">
+            <h1>{{ taskTitle }}</h1>
+        </div>
+        <div class="taskIdentifier">
+            <div class="taskPart">
+                <img id="cardImgDesc" :src="avatar_Img ? avatar_Img : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'" alt="Profile picture">
+                <h6>Task created by:</h6>
+                <h4>{{ taskCreatedBy }}</h4>
+            </div>
+            <div class="taskPart">
+                <img id="cardImgDesc" :src="avatar_Img ? avatar_Img : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'" alt="Profile picture">
+                <h6>Task responsable:</h6>
+                <h4>{{ taskAsignedTo }}</h4>
+            </div>
+        </div>
+        <hr>
+        <div class="taskChars">
+            <h4>{{ taskCreationDate }}</h4>
+            <h4>{{ taskCreationHour }}</h4>
+            <h4>{{ taskStatus }}</h4>
+        </div>
+        <hr>
+        <p class="taskDesc">{{ taskDescription }}</p>
+        <div class="taskIconDesc">
+            <i class="fas fa-toggle-off"></i>
+            <i class="fas fa-toggle-on"></i>
+            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-edit"></i>
+        </div>
+    </div>
+
 </template>
 
 <script setup>
@@ -77,5 +102,83 @@ onMounted(() => {
 </script>
 
 <style scoped>
+
+.taskCardDesc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 520px;
+    margin: auto;
+    background: white;
+    border-radius: 1rem;
+    padding: 5%;
+    box-shadow: 0px 6px 8px 0px #88888898;
+}
+
+.taskCardDesc h4 {
+    font-size: .8rem;
+}
+
+.taskTitle {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.taskPart {
+    width: 100%;
+}
+
+hr {
+    width: 100%;
+}
+
+.taskDesc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* width: 520px;
+    max-width: 520px; */
+}
+
+.taskIdentifier {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+    gap: 60px;
+}
+
+.taskChars{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+    max-width: 520px;
+    gap: 70px;
+}
+
+#cardImgDesc {
+    height: 80px;
+    width: 80px;
+    max-height: 70%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 6px 8px 0px #88888898;
+    border: 1px solid rgba(0, 0, 0, 0.603);
+}
+
+.taskIconDesc {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 30px;
+    width: 60%;
+}
 
 </style>
