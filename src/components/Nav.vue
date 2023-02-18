@@ -4,12 +4,12 @@
     <router-link to="/">
       <img src="../../assets/images/mind_blanco.png" alt="Company Logo" class="navImg">
     </router-link>
-    <label id = "navbar-toggle" class="navbar-toggle" for="toggle" @click="NavBarToggle">
+    <label id = "navbar-toggle" class="navbar-toggle" for="toggle" @click="hambuActiveToggle" :class="{'active': hambuActive, '#navbar-toggle': !hambuActive }">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
     </label>
-    <ul>
+    <ul :class="{'active': hambuActive, '': !hambuActive }" >
         <li>
           <router-link to="/">Task Manager</router-link>
         </li>
@@ -71,6 +71,12 @@ const navMenu = document.querySelector("nav ul")
 
 console.log(hamburguer)
 console.log(navMenu)
+
+const hambuActive =  ref(false)
+const hambuActiveToggle = async() => {
+  hambuActive.value = !hambuActive.value
+  console.log(hambuActive.value)
+}
 
 const NavBarToggle = async() => {
   hamburguer.classList.toggle("active");

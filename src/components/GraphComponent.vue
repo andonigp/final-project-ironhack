@@ -10,6 +10,11 @@ import { Chart } from "chart.js/auto"
 import { supabase } from "../supabase";
 import { useUserStore } from "../stores/user";
 
+const props = defineProps({
+  incompleteTasks: Object,
+  completedTasks: Object
+})
+
 const labels = [
   "Incomplete",
   "Complete"
@@ -19,7 +24,7 @@ const data = {
   labels: labels,
   datasets: [{
     label: "My currents tasks",
-    data: [2, 3],
+    data: [3, 2],
     backgroundColor: ['rgb(255, 99, 132)', 'rgb(75, 192, 124, 1)'],
     // data: [completedTasks.value, incompleteTasks.value]
   }]
@@ -31,24 +36,36 @@ const config = {
   options: {}
 };
 
+
+
+// const getIncomplete = ref('')
+// const getComplete = ref('')
+// const getCount = async() => {
+//   const { data: dataIncomplete } = await supabase.from("tasks").select("id").eq( "is_complete" , false).eq("user_id", useUserStore().user.id)
+//   getIncomplete.value = dataIncomplete.length
+//   console.log(getIncomplete.value)
+
+//   const { data: dataComplete } = await supabase.from("tasks").select("id").eq( "is_complete" , true).eq("user_id", useUserStore().user.id)
+//   getComplete.value = dataComplete.length
+//   console.log(getComplete.value)
+
+
+//   return {getComplete, getIncomplete}
+// }
+
+// getCount()
+
 onMounted(() => {
-const myChart = new Chart(
+  // getCount();
+  const myChart = new Chart(
     document.getElementById('myChart'),
     config
 )
 })
 
-const getIncTasks = async() => {
-    const { data: tasks } = await supabase
-      .from("tasks")
-      .select("*")
-      .match({ user_id: useUserStore().user.id });
-    tasksArr.value = tasks;
-    return tasksArr.value;
-}
-
-
-
+// onUpdated(() => {
+//   getCount();
+// })
 
 </script>
 

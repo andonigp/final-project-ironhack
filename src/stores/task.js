@@ -102,5 +102,29 @@ export const useTaskStore = defineStore("tasks", () => {
     return tasksInformation.value;
   };
 
-  return { tasksArr, fetchTasks, addTask, deleteTask, changeTaskStatus, editTakUpdate, changeSentTaskStatus, asignedByImg, deleteTaskSent, fetchTasksInc, fetchTasksComp, fetchTasksInformation };
+  const tasksArrByGlobal = ref(null);
+  const fetchTasksByGlobal = async (global_task_id) => {
+    const { data: tasks } = await supabase
+      .from("tasks")
+      .select("*")
+      .match({ global_task_id: global_task_id });
+    tasksArrByGlobal.value = tasks;
+    return tasksArrByGlobal.value;
+  };
+
+  return {
+    tasksArr,
+    fetchTasks,
+    addTask,
+    deleteTask,
+    changeTaskStatus,
+    editTakUpdate,
+    changeSentTaskStatus,
+    asignedByImg,
+    deleteTaskSent,
+    fetchTasksInc,
+    fetchTasksComp,
+    fetchTasksInformation,
+    fetchTasksByGlobal
+  };
 });

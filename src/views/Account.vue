@@ -46,7 +46,10 @@
       </div>
     </div>
     <button v-if="editData" @click="editProfile">Submit Changes</button>
-    <i @click="editDataToggle" class="fas fa-edit"></i>
+    <div class="editButton">
+      <i @click="editDataToggle" class="fas fa-edit"></i>
+    </div>
+    
   </div>
   <!-- <Footer /> -->
 </template>
@@ -173,4 +176,13 @@
 </script>
 
 <style>
+
+.editButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
 </style>

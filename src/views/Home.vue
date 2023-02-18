@@ -4,7 +4,7 @@
     
     <div class="contentHome"> 
       <div class="headerReorder">
-        <NewTask />
+        <NewTask :incompleteTasks = "getIncomplete" :completedTasks = "getComplete" />
         <Graph />
       </div>
     </div>
@@ -32,53 +32,45 @@ const taskStore = useTaskStore();
 
 // Variable para guardar las tareas de supabase
 const tasks = ref([]);
-const incompleteTasks = ref([])
-const completedTasks = ref([])
+
 
 // Creamos una función que conecte a la store para conseguir las tareas de supabase
 
 
-
 const getTasks = async() => {
   tasks.value = await taskStore.fetchTasks();
-  incompleteTasks.value = await taskStore.fetchTasksInc()
-  completedTasks.value = await taskStore.fetchTasksComp()
-
-  
 };
 
 getTasks();
 
 onUpdated(() => {
   getTasks();
+  getCount();
 })
 
 
 // -----------------------------------------COUNT DE ITEMS-----------------------------------------
+// Aqui estoy recogiendo activamente el dato de las tasks completas y las incompletas. La idea es enviarla por props a la gráfica.
+// ****OJO****: REVISAR COMO SOLVENTAR LA DIFERENCIA ENTRE EL TIEMPO DE VIDA DE LA GRÁFICA Y EL UPDATED DEL HOME. POR OTRO LADO EL 
+// PROP NO SE HA PASADO CORRECTAMENTE.
+
+const getIncomplete = ref('')
+const getComplete = ref('')
+const getCount = async() => {
+  const { data: dataIncomplete } = await supabase.from("tasks").select("id").eq( "is_complete" , false).eq("user_id", useUserStore().user.id)
+  getIncomplete.value = dataIncomplete.length
+  // console.log(getIncomplete.value)
+
+  const { data: dataComplete } = await supabase.from("tasks").select("id").eq( "is_complete" , true).eq("user_id", useUserStore().user.id)
+  getComplete.value = dataComplete.length
+  // console.log(getComplete.value)
 
 
+  return {getComplete, getIncomplete}
+}
 
+getCount();
 
-watch(tasks.value, async(newValue) =>{
-  console.log("Entro el watcher")
-})
-
-
-
-// const countTotal = async() => {
-//   // totalTasks.value = tasks
-
-//   for (const task in tasks) {
-//     console.log(task[task)
-
-//   }
-
-//   // incompleteTasks.value = await supabase.from("tasks").select({user_id : useUserStore().user.id, is_complete : false })
-//   // completedTasks.value = await supabase.from("tasks").select("*").match({user_id : useUserStore().user.id, is_complete : false })
-  
-//   // console.log(incompleteTasks.value)
-//   // console.log("Total complte tasks: "+ completedTasks.value.length)
-// }
 
 </script>
 
@@ -91,13 +83,6 @@ watch(tasks.value, async(newValue) =>{
   gap: 50px;
   flex-wrap: wrap;
 }
-
-/* #myChart {
-  box-shadow: 0px 6px 8px 0px #888888d3;
-  border-radius: 50%;
-  padding: 0;
-} */
-
 
 </style>
 

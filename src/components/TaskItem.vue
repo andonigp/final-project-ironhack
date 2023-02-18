@@ -1,5 +1,5 @@
 <template>
-<div id="card" class="taskContainer whiteColor">
+<div id="card" class="taskContainer whiteColor" :class="{'greenColor': statusIcon, 'redColor': !statusIcon}">
     
     <!-- <label class="labelAsignedBy" for="">By: {{ task.asignedBy }}</label> -->
     <div>
@@ -30,27 +30,29 @@
 </template>
 
 <script setup>
-import { onUpdated, reactive, ref, watch } from 'vue';
+// IMPORTS
+import { onMounted, onUpdated, reactive, ref, watch } from 'vue';
 import { useTaskStore } from '../stores/task';
 import { supabase } from '../supabase';
 import { useRouter } from 'vue-router';
 const router = useRouter()
-const audioAlert = new Audio("../../assets/sounds/alert.mp3")
 
-const taskStore = useTaskStore();
-let etOption = ref(false)
-const etOptionSwap = () => {
-    etOption.value = !etOption.value
-    console.log(etOption)
-}
-
+// DEFINIMOS IMPORTS QUE VENDRÁN DE HOME
 const props = defineProps({
     task: Object,
 });
 
+// IMPORTAMOS EL SONIDO DE ALERTA
+const audioAlert = new Audio("../../assets/sounds/alert.mp3")
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+
+
+// CONSTRUCCIÓN DEL VINCULO PARA REVISAR LA INFORMACIÓN DETALLADA DEL TASK.
 const taskId = ref("/task/" + props.task.id)
-console.log(taskId.value)
+// console.log(taskId.value)
 
 // Función para borrar la tarea a través de la store. El problema que tendremos aquí (y en NewTask.vue) es que cuando modifiquemos 
 // la base de datos los cambios no se verán reflejados en el v-for de Home.vue porque no estamos modificando la variable tasks guardada en Home. 
@@ -59,20 +61,27 @@ const deleteTask = async() => {
     await taskStore.deleteTask(props.task.id);
 };
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+
+// OBTENCIÓN DEL URL DE LA IMAGEN DEL USUARIO CREADOR DEL TASK
 const avatar_Img = ref('')
 const getAvatar = async() => {
     avatar_Img.value = await taskStore.asignedByImg(props.task.asignedBy)
     avatar_Img.value = avatar_Img.value[0].avatar_url
-    
+    return avatar_Img.value
 }
+onMounted(() => {
+    getAvatar()
+})
 
-getAvatar()
 
-// onUpdated(() => {
-//   getAvatar();
-// //   console.log(avatar_Img.value)
-// })
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
 
+// FUNCION UTILIZADA PARA MODIFICAR EL STATUS DEL TASK (TRUE / FALSE) 
 let statusIcon = ref(props.task.is_complete)
 const changeStatus = async() => {
     await taskStore.changeTaskStatus(props.task.id, props.task.is_complete)
@@ -80,53 +89,44 @@ const changeStatus = async() => {
     await taskStore.changeSentTaskStatus(props.task.global_task_id, props.task.is_complete)
 };
 
+// FUNCION UTILIZADA PARA HABILITAR LA FUNCIONALIDAD DEL EDIT EL STATUS DE UNA TASK.
+const taskStore = useTaskStore();
+let etOption = ref(false)
+const etOptionSwap = () => {
+    etOption.value = !etOption.value
+    console.log(etOption)
+}
 const editedTitle = ref(props.task.title);
 const editedDescription = ref(props.task.description);
 
+// GUARDAR CAMBIOS REALIZADOS A LA TAREA
 const editChanges = async() => {
     await taskStore.editTakUpdate(props.task.id, editedTitle.value, editedDescription.value)
     etOption.value = !etOption.value
     audioAlert.play()
 }
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+
+// VARIABLES QUE PERMITEN IDENTFICAR SI EL USUARIO ACTIVO ES EL MISMO QUE CREO ESTA TASK.
+// DE NO SER ASÍ DESHABILITARÁ LA POSIBILIDAD DE BORRAR LA TASK.
 const isSent = ref(true)
 const isSentValue = ref(props.task.global_task_id)
-console.log(isSentValue.value)
-
 const isSentTask = async() => {
     if (isSentValue.value > 0) {
         isSent.value = !isSent.value
     }
 }
-
 isSentTask()
 
-// const taskCardContainer = document.getElementById("card")
-// console.log(taskCardContainer)
-
-// const changeColor = async() => {
-//     if (props.task.is_complete === false) {
-//         taskCardContainer.classList.remove("greenColor")
-//         taskCardContainer.classList.add("redColor")
-//     } else {
-//         taskCardContainer.classList.remove("redColor")
-//         taskCardContainer.classList.add("greenColor")
-//     }
-// }
-
-// changeColor();
-
-// // onUpdated(() => {
-// //     changeColor()
-// // })
-
-
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
 </script>
 
 <style>
-.whiteColor {
-    background-color: white;
-}
 
 .redColor {
     background-color: rgba(255, 0, 0, 0.24);

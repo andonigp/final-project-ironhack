@@ -6,7 +6,9 @@
         <label class="dueDateLabel" for="due">{{ sentTask.due }}</label>
         <label class="titleLabel" for="title">{{ sentTask.title }}</label>
         <label class="completedLabel" for="is_complete">{{ sentTask.is_complete }}</label>
-        <i class="fas fa-info-circle"></i>
+        <router-link :to="taskByGlobal">
+            <i class="fas fa-info-circle"></i>
+        </router-link>
     </div>
     <hr>
 </template>
@@ -16,9 +18,20 @@ import { onUpdated } from '@vue/runtime-core';
 import { useTaskStore } from '../stores/task';
 import { useSendUser } from '../stores/sendUser';
 import { ref } from 'vue';
+import { get } from '@supabase/gotrue-js/dist/module/lib/fetch';
 const props = defineProps({
     sentTask: Object,
 });
+
+const taskByGlobal = ref('')
+const getTaskIdByGlobal = async() => {
+    taskByGlobal.value = await useTaskStore().fetchTasksByGlobal(props.sentTask.global_task_id)
+    taskByGlobal.value = taskByGlobal.value[0].id
+    taskByGlobal.value = ref("/task/" + taskByGlobal.value)
+    console.log(taskByGlobal.value)
+}
+
+getTaskIdByGlobal()
 
 
 const deleteSentTask = async() => {
@@ -69,4 +82,10 @@ const deleteSentTask = async() => {
     text-overflow: hidden;
     margin-left: 15px;
 }
+
+.completedLabel {
+    text-align: center;
+    width: 75px;
+}
+
 </style>

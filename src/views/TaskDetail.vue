@@ -1,17 +1,17 @@
 <template>
     <Nav />
-    <div class="taskCardDesc">
+    <div class="taskCardDesc" v-if="allowed === true">
         <div class="taskTitle">
             <h1>{{ taskTitle }}</h1>
         </div>
         <div class="taskIdentifier">
             <div class="taskPart">
-                <img id="cardImgDesc" :src="avatar_Img ? avatar_Img : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'" alt="Profile picture">
+                <img id="cardImgDesc" :src="avatar_created_Img ? avatar_created_Img : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'" alt="Profile picture">
                 <h6>Task created by:</h6>
                 <h4>{{ taskCreatedBy }}</h4>
             </div>
             <div class="taskPart">
-                <img id="cardImgDesc" :src="avatar_Img ? avatar_Img : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'" alt="Profile picture">
+                <img id="cardImgDesc" :src="avatar_responsable_Img ? avatar_responsable_Img : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'" alt="Profile picture">
                 <h6>Task responsable:</h6>
                 <h4>{{ taskAsignedTo }}</h4>
             </div>
@@ -30,6 +30,10 @@
             <i class="fas fa-trash-alt"></i>
             <i class="fas fa-edit"></i>
         </div>
+    </div>
+    <div class="taskCardDesc" v-if="allowed === false">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h1 class="taskTitle">{{ taskTitle }}</h1>
     </div>
 
 </template>
@@ -52,6 +56,8 @@ function getCurrentURL () {
   url = url[4]
   console.log(url)
 
+
+const allowed = ref(true)
 const taskInfo = ref([])
 const taskTitle = ref('')
 const taskCreationDate = ref('')
@@ -83,16 +89,31 @@ const getInfo = async() => {
     } else {
         
         taskTitle.value = "You are not allowed to this task's detail. Sorry"
+        allowed.value = false
 
     }
 
 }
 
+const avatar_created_Img = ref('')
+const avatar_responsable_Img = ref('')
+
+// console.log(taskCreatedBy.value)
+
+// const getImages = async() => {
+//     avatar_created_Img.value = await taskStore.asignedByImg(taskCreatedBy)
+//     avatar_created_Img.value = avatar_created_Img.value[0].avatar_url
+// }
+
+
 getInfo();
+// getImages();
+
 
 
 onMounted(() => {
     getInfo()
+    // getImages()
 })
 
 
@@ -102,6 +123,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.fa-exclamation-triangle {
+    font-size: 100px;
+}
+
 
 .taskCardDesc {
     display: flex;
@@ -138,7 +163,7 @@ hr {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    text-align: justify;
     /* width: 520px;
     max-width: 520px; */
 }
