@@ -38,7 +38,7 @@ export const useTaskStore = defineStore("tasks", () => {
     return tasksArrComp.value;
   };
 
-  const addTask = async (title, description) => {
+  const addTask = async (title, description, dueDate) => {
     console.log(useUserStore().user.id);
     const { data, error } = await supabase.from("tasks").insert([
       {
@@ -46,6 +46,7 @@ export const useTaskStore = defineStore("tasks", () => {
         title: title,
         is_complete: false,
         description: description,
+        due: dueDate,
         asignedBy: useUserStore().user.email,
       },
     ]);

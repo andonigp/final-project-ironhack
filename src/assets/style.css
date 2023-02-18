@@ -279,6 +279,11 @@ nav ul li button {
     width: 600px;
 }
 
+.contentNewTask label {
+    padding-right: 15px;
+    color: gray;
+}
+
 .input-button {
     display: flex;
     justify-content: center;

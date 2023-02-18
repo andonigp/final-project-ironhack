@@ -1,10 +1,16 @@
 <template>
     <Nav />
-    <div class="taskCardDesc" v-if="allowed === true">
+    <div class="taskCardDesc" v-if="allowed === true">     
         <div class="taskTitle">
             <h1>{{ taskTitle }}</h1>
         </div>
-        <div class="taskIdentifier">
+        <div class="taskPart singleUser" v-if="singleUser === true">
+            <img :src="avatar_created_Img ? avatar_created_Img : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'" alt="Profile picture">
+            <h6>Task created and to be solved by:</h6>
+            <h4>{{ taskCreatedBy }}</h4>
+        </div>
+
+        <div class="taskIdentifier" v-if="singleUser === false">
             <div class="taskPart">
                 <img id="cardImgDesc" :src="avatar_created_Img ? avatar_created_Img : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'" alt="Profile picture">
                 <h6>Task created by:</h6>
@@ -23,12 +29,15 @@
             <h4>{{ taskStatus }}</h4>
         </div>
         <hr>
-        <p class="taskDesc">{{ taskDescription }}</p>
+        <p class="taskDesc" v-if="editToggle === true">{{ taskDescription }}</p>
+        <div v-if="editToggle === false" class="textareaEdit" >
+            <textarea cols="70" rows="10">{{ taskDescription }}</textarea>
+        </div>
         <div class="taskIconDesc">
-            <i class="fas fa-toggle-off"></i>
-            <i class="fas fa-toggle-on"></i>
+            <i class="fas fa-toggle-off" @click="statusToggle" v-if="taskStatus === 'Incomplete'"></i>
+            <i class="fas fa-toggle-on" @click="statusToggle" v-if="taskStatus === 'Completed'"></i>
             <i class="fas fa-trash-alt"></i>
-            <i class="fas fa-edit"></i>
+            <i class="fas fa-edit" @click="editToggleFunc"></i>
         </div>
     </div>
     <div class="taskCardDesc" v-if="allowed === false">
@@ -43,6 +52,7 @@ import Nav from '../components/Nav.vue';
 import { useTaskStore } from "../stores/task";
 import { useUserStore } from "../stores/user";
 import { onMounted, onUpdated, ref } from 'vue';
+import { supabase } from '../supabase';
 
 const taskStore = useTaskStore()
 
@@ -56,7 +66,7 @@ function getCurrentURL () {
   url = url[4]
   console.log(url)
 
-
+const singleUser = ref(false)
 const allowed = ref(true)
 const taskInfo = ref([])
 const taskTitle = ref('')
@@ -66,25 +76,49 @@ const taskCreatedBy = ref('')
 const taskAsignedTo = ref('')
 let taskStatus = ref('')
 const taskDescription = ref('')
+let taskDueDate = ref('')
+const avatar_created_Img = ref('')
+const avatar_responsable_Img = ref('')
 const getInfo = async() => {
     taskInfo.value = await taskStore.fetchTasksInformation(url)
     console.log(taskInfo.value[0])
 
+    const { data: dataIncomplete } = await supabase.from("profiles").select("email").eq("user_id", taskInfo.value[0].user_id)
+        taskAsignedTo.value = dataIncomplete
+        taskAsignedTo.value = taskAsignedTo.value[0].email
+
     if (taskInfo.value[0].user_id === useUserStore().user.id || taskInfo.value[0].asignedBy === useUserStore().user.email) {
+
+        if (taskAsignedTo.value === taskInfo.value[0].asignedBy) {
+            singleUser.value = true
+            console.log(singleUser.value)
+            console.log("SINGLE USER")
+        }
 
         taskTitle.value = taskInfo.value[0].title  
         taskCreationDate.value = taskInfo.value[0].created_at.split("T")[0]
         taskCreationHour.value = taskInfo.value[0].created_at.split(".")
         taskCreationHour.value = taskCreationHour.value[0].split("T")[1]
         taskCreatedBy.value = taskInfo.value[0].asignedBy
-        taskAsignedTo.value = useUserStore().user.email
+
+        const { data: avatarImgCr } = await supabase.from("profiles").select("avatar_url").eq("email", taskCreatedBy.value)
+        avatar_created_Img.value = avatarImgCr
+        avatar_created_Img.value = avatar_created_Img.value[0].avatar_url
+        
+        const { data: avatarImg } = await supabase.from("profiles").select("avatar_url").eq("email", taskAsignedTo.value)
+        avatar_responsable_Img.value = avatarImg
+        avatar_responsable_Img.value = avatar_responsable_Img.value[0].avatar_url
+        
         if (taskInfo.value[0].is_complete === true ) {
-            taskStatus.value = "Complete"
+            taskStatus.value = "Completed"
             console.log(taskStatus.value)
         } else {
             taskStatus.value = "Incomplete"
         }
         taskDescription.value = taskInfo.value[0].description 
+        
+        taskDueDate.value = taskInfo.value[0].due
+        // console.log(taskDueDate)
         
     } else {
         
@@ -95,8 +129,16 @@ const getInfo = async() => {
 
 }
 
-const avatar_created_Img = ref('')
-const avatar_responsable_Img = ref('')
+const editToggle = ref(true)
+const editToggleFunc = async() => {
+    editToggle.value = !editToggle.value
+    console.log(editToggle.value)
+}
+
+// const deleteTask = async() => {
+//     await taskStore.deleteTask(props.task.id);
+// };
+
 
 // console.log(taskCreatedBy.value)
 
@@ -116,8 +158,29 @@ onMounted(() => {
     // getImages()
 })
 
+// -----------------------------------------------------------------------------------------------
+// ---------------------------------------COUNT DOWN----------------------------------------------
+// -----------------------------------------------------------------------------------------------
 
+const days = ref(0)
+const hours = ref(0)
+const minutes = ref(0)
+const seconds = ref(0)
+const dueDate = new Date(taskDueDate.value)
 
+const setInterval= async() => {
+    const currentDate = new Date();
+    const dueDateTime = taskDueDate.value - currentDate;
+    console.log(dueDateTime)
+
+    seconds.value = parseInt(dueDateTime / 1000);
+    minutes.value = parseInt(seconds.value / 60);
+    hours.value = parseInt(minutes.value / 60);
+    days.value = parseInt(hours.value / 60);
+}
+
+setInterval();
+console.log(days.value)
 
 
 </script>
@@ -147,7 +210,7 @@ onMounted(() => {
 
 .taskTitle {
     margin-top: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -205,5 +268,32 @@ hr {
     font-size: 30px;
     width: 60%;
 }
+
+.singleUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.singleUser h6 {
+    margin-bottom: 0px;
+}
+
+.singleUser img {
+    height: 140px;
+    width: 140px;
+    max-height: 70%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 6px 8px 0px #88888898;
+    border: 1px solid rgba(0, 0, 0, 0.603);
+}
+
+.textareaEdit {
+    display: flex;
+    justify-content: center;
+}
+
 
 </style>

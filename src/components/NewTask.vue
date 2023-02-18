@@ -4,6 +4,8 @@
         <div class="input-field">
             <input type="text" placeholder="Add a Task Title" v-model="name">
         </div>
+        <label for="">Due date:</label>
+        <input id="dueToInput" type="date" v-model="dueDate">
         <div class="input-field">
             <textarea name="" id="" cols="90" rows="10" v-model="description" placeholder="Type a description for your task."></textarea>
         </div>
@@ -26,6 +28,7 @@ const taskStore = useTaskStore();
 // variables para los valors de los inputs
 const name = ref('');
 const description = ref('');
+const dueDate = ref('');
 
 // constant to save a variable that holds an initial false boolean value for the errorMessage container that is conditionally displayed depending if the input field is empty
 const showErrorMessage = ref(false);
@@ -46,9 +49,10 @@ const addTask = () => {
 
     } else {
         // Aquí mandamos los valores a la store para crear la nueva Task. Esta parte de la función tenéis que refactorizarla para que funcione con emit y el addTask del store se llame desde Home.vue.
-        useTaskStore().addTask(name.value, description.value);
+        useTaskStore().addTask(name.value, description.value, dueDate.value);
         name.value = '';
         description.value = '';
+        dueDate.value = '';
         audioAlert.play()  
     }
 };
