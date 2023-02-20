@@ -23,7 +23,7 @@
       </ul>
     </div>
     <div>
-      <ul>
+      <ul class="hambRouters">
         <li class="log-out-welcome">
           <p>Welcome, {{ useUserStore().user.email }}</p>
         </li>

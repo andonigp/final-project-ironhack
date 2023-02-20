@@ -642,11 +642,12 @@ textarea {
 /* Footer Bar */
 
 .footerBar {
-    height: 100px;
-    background-color: rgb(218, 212, 212);
+    height: 80px;
+    background-color: #787878;
     /* position: absolute; */
     bottom: 0;
     width: 100%;
+    color: white;
 }
 
 .footerFlex {
@@ -700,9 +701,9 @@ textarea {
     .hambRouters {
         position: fixed;
         left: 100%;
-        top: 70px;
+        top: 43px;
         flex-direction: column;
-        background-color: #072ac8ab;
+        background-color: #203267cc;
         width: 100%;
         text-align: center;
         transition: .3s;
@@ -777,6 +778,14 @@ textarea {
 
     .cardHeader {
         flex-direction: column;
+    }
+
+    .taskContainer {
+        width: 100%;
+    }
+
+    .taskContainer div {
+        width: 100%;
     }
 
     .taskContainer .taskIcon {
