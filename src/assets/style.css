@@ -644,7 +644,7 @@ textarea {
 .footerBar {
     height: 100px;
     background-color: rgb(218, 212, 212);
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
 }

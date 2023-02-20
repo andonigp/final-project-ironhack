@@ -42,8 +42,6 @@ const deleteSentTask = async() => {
     console.log("Deleted drom Sent Tasks table.")
 }
 
-
-
 </script>
 
 

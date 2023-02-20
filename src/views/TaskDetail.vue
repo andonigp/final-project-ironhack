@@ -50,7 +50,7 @@
         <i class="fas fa-exclamation-triangle"></i>
         <h1 class="taskTitle">{{ taskTitle }}</h1>
     </div>
-
+    <Footer />
 </template>
 
 <script setup>
@@ -59,6 +59,7 @@ import { useTaskStore } from "../stores/task";
 import { useUserStore } from "../stores/user";
 import { onMounted, onUpdated, ref } from 'vue';
 import { supabase } from '../supabase';
+import Footer from '../components/Footer.vue';
 
 const taskStore = useTaskStore()
 
@@ -152,12 +153,18 @@ const editTask = async() => {
 
 const deleteTask = async() => {
     await taskStore.deleteTask(url);
-    
- 
 };
 
 getInfo();
-// getImages();
+
+const statusToggle = async() => {
+    taskInfo.value[0].is_complete = !taskInfo.value[0].is_complete
+    await taskStore.changeTaskStatus(url, taskInfo.value[0].is_complete)
+    console.log(taskInfo.value[0].is_complete)
+    getInfo()
+}
+
+
 
 
 
@@ -210,6 +217,7 @@ console.log(days.value)
     border-radius: 1rem;
     padding: 5%;
     box-shadow: 0px 6px 8px 0px #88888898;
+    margin-bottom: 50px;
 }
 
 .taskCardDesc h4 {

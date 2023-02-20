@@ -28,7 +28,7 @@
         </div>
         <sentItem v-for="sentTask in sentTasks " :sentTask="sentTask"/>
     </div>
-    <!-- <Footer />    -->
+    <Footer />   
 </template>
 
 <script setup>

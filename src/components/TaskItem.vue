@@ -42,6 +42,11 @@ const props = defineProps({
     task: Object,
 });
 
+// DEFINIMOS LOS EMITS
+const emit = defineEmits ([
+    "getTasks"
+])
+
 // IMPORTAMOS EL SONIDO DE ALERTA
 const audioAlert = new Audio("../../assets/sounds/alert.mp3")
 
@@ -59,6 +64,7 @@ const taskId = ref("/task/" + props.task.id)
 // Usad el emit para cambiar esto y evitar ningún page refresh.
 const deleteTask = async() => {
     await taskStore.deleteTask(props.task.id);
+    emit("getTasks")
 };
 
 // ------------------------------------------------------------------------------------------------------
@@ -87,6 +93,7 @@ const changeStatus = async() => {
     await taskStore.changeTaskStatus(props.task.id, props.task.is_complete)
     statusIcon.value = !statusIcon.value
     await taskStore.changeSentTaskStatus(props.task.global_task_id, props.task.is_complete)
+    emit("getTasks")
 };
 
 // FUNCION UTILIZADA PARA HABILITAR LA FUNCIONALIDAD DEL EDIT EL STATUS DE UNA TASK.
@@ -95,6 +102,7 @@ let etOption = ref(false)
 const etOptionSwap = () => {
     etOption.value = !etOption.value
     console.log(etOption)
+    emit("getTasks")
 }
 const editedTitle = ref(props.task.title);
 const editedDescription = ref(props.task.description);
@@ -104,6 +112,7 @@ const editChanges = async() => {
     await taskStore.editTakUpdate(props.task.id, editedTitle.value, editedDescription.value)
     etOption.value = !etOption.value
     audioAlert.play()
+    emit("getTasks")
 }
 
 // ------------------------------------------------------------------------------------------------------

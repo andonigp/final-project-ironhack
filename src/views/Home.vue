@@ -4,15 +4,15 @@
     
     <div class="contentHome"> 
       <div class="headerReorder">
-        <NewTask />
+        <NewTask @getTasks="getTasks" />
         <Graph :incompleteTasks = "getIncomplete" :completedTasks = "getComplete" />
       </div>
     </div>
     <h1 class="homeTaskTitle">Assigned tasks:</h1>
     <div class="taskWrapper">
-      <TaskItem class="taskContainer" v-for="task in tasks" :key="task.id" :task="task" />
+      <TaskItem class="taskContainer" v-for="task in tasks" :key="task.id" :task="task" @getTasks="getTasks"/>
     </div>
-    <!-- <Footer /> -->
+    <Footer />
   </div>
 </template>
 
@@ -32,6 +32,8 @@ const taskStore = useTaskStore();
 
 // Variable para guardar las tareas de supabase
 const tasks = ref([]);
+const getIncomplete = ref('')
+const getComplete = ref('')
 
 
 // Creamos una función que conecte a la store para conseguir las tareas de supabase
@@ -39,37 +41,12 @@ const tasks = ref([]);
 
 const getTasks = async() => {
   tasks.value = await taskStore.fetchTasks();
+  console.log("GET TASKS")
+  getIncomplete.value = tasks.value.filter(task => !task.is_complete)
+  getComplete.value = tasks.value.filter(task => task.is_complete)
 };
 
 getTasks();
-
-onUpdated(() => {
-  getTasks();
-  getCount();
-})
-
-
-// -----------------------------------------COUNT DE ITEMS-----------------------------------------
-// Aqui estoy recogiendo activamente el dato de las tasks completas y las incompletas. La idea es enviarla por props a la gráfica.
-// ****OJO****: REVISAR COMO SOLVENTAR LA DIFERENCIA ENTRE EL TIEMPO DE VIDA DE LA GRÁFICA Y EL UPDATED DEL HOME. POR OTRO LADO EL 
-// PROP NO SE HA PASADO CORRECTAMENTE.
-
-const getIncomplete = ref('')
-const getComplete = ref('')
-const getCount = async() => {
-  const { data: dataIncomplete } = await supabase.from("tasks").select("id").eq( "is_complete" , false).eq("user_id", useUserStore().user.id)
-  getIncomplete.value = dataIncomplete.length
-  // console.log(getIncomplete.value)
-
-  const { data: dataComplete } = await supabase.from("tasks").select("id").eq( "is_complete" , true).eq("user_id", useUserStore().user.id)
-  getComplete.value = dataComplete.length
-  // console.log(getComplete.value)
-
-
-  return {getComplete, getIncomplete}
-}
-
-getCount();
 
 
 </script>
