@@ -30,14 +30,21 @@
 - [x] Estilamiento de accounts.
 - [x] Tabla de perfiles en supabase.
 - [x] Formato de footer.
-- [ ] Formato condicional de task cards por status.
+- [x] Formato condicional de task cards por status.
 
 #### Day Four
 ###### Viernes 10, Febrero 2023
-- [ ] Formato condicional de task cards por status.
-- [ ] Revisar el deploy de Vercel.
-- [ ] Modificación de Imagen de perfil
-- [ ] Sondear la posibilidad de crear el envío de tasks.
+- [x] Formato condicional de task cards por status.
+- [x] Revisar el deploy de Vercel.
+- [x] Modificación de Imagen de perfil
+- [x] Sondear la posibilidad de crear el envío de tasks.
+
+#### Day Five
+###### Viernes 20, Febrero 2023
+- [ ] Conectar gráfica de status.
+- [ ] Hamburguer Menu.
+- [ ] Confirm email con redirección al sign in.
+- [ ] Rediseño de footer.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
