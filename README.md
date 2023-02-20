@@ -40,7 +40,7 @@
 - [x] Sondear la posibilidad de crear el envío de tasks.
 
 #### Day Five
-###### Viernes 20, Febrero 2023
+###### Lunes 20, Febrero 2023
 - [ ] Conectar gráfica de status.
 - [ ] Hamburguer Menu.
 - [ ] Confirm email con redirección al sign in.
