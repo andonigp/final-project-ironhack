@@ -4,23 +4,24 @@
     <router-link to="/">
       <img src="../../assets/images/mind_blanco.png" alt="Company Logo" class="navImg">
     </router-link>
-    <label id = "navbar-toggle" class="navbar-toggle" for="toggle" @click="hambuActiveToggle" :class="{'active': hambuActive, '#navbar-toggle': !hambuActive }">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-    </label>
-    <ul :class="{'active': hambuActive, '': !hambuActive }" >
-        <li>
-          <router-link to="/">Task Manager</router-link>
-        </li>
-        <li>
-          <router-link to="/send">Send Task</router-link>
-        </li>
-        <li>
-          <router-link to="/account">Profile</router-link>
-        </li>
-    </ul>
-
+    <div>
+      <label id = "navbar-toggle" class="navbar-toggle" for="toggle" @click="hambuActiveToggle" :class="{'active': hambuActive, '#navbar-toggle': !hambuActive }">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+      </label>
+      <ul class="hambRouters" :class="{'active': hambuActive, '': !hambuActive }">
+          <li>
+            <router-link to="/">Task Manager</router-link>
+          </li>
+          <li>
+            <router-link to="/send">Send Task</router-link>
+          </li>
+          <li>
+            <router-link to="/account">Profile</router-link>
+          </li>
+      </ul>
+    </div>
     <div>
       <ul>
         <li class="log-out-welcome">

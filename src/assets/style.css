@@ -38,7 +38,7 @@ nav {
     width: 70%;
 }
 
-nav ul {
+.hambRouters {
     list-style: none;
     padding-inline-start: 0;
     display: flex;
@@ -48,17 +48,17 @@ nav ul {
 
 }
 
-nav ul li a {
+.hambRouters li a {
     text-decoration: none !important;
     list-style: none !important;
     color: white;
 }
 
-nav ul li a:hover {
+.hambRouters li a:hover {
     font-weight: 600;
 }
 
-nav ul li button {
+.hambRouters li button {
     background: #f68520;
     border-width: 0;
     padding: 10px;
@@ -697,7 +697,7 @@ textarea {
         transform: translateY(-15px) rotate(-45deg);
     }
 
-    nav ul {
+    .hambRouters {
         position: fixed;
         left: 100%;
         top: 70px;
@@ -706,10 +706,9 @@ textarea {
         width: 100%;
         text-align: center;
         transition: .3s;
-
     }
 
-    nav ul li {
+    .hambRouters li {
         margin: 16px 0;
     }
 
@@ -717,17 +716,18 @@ textarea {
         left: 0;
     }
 
-    nav ul.active a {
+    .hambRouters.active a {
         color: white;
         font-weight: 800;
         font-size: 30px;
     }
 
-    nav ul.active a:hover {
+    .hambRouters.active a:hover {
         color: #292E47;
         font-weight: 800;
         font-size: 30px;
     }
+
 
 
     /* ------------------------------ Home ------------------------------ */
