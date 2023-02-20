@@ -35,6 +35,7 @@ getTaskIdByGlobal()
 
 
 const deleteSentTask = async() => {
+    // this.$swal("confirm", "Are you sure you want to delete?")
     await useTaskStore().deleteTaskSent(props.sentTask.global_task_id)
     console.log("Deleted from Tasks table.")
     await useSendUser().deleteSentTask(props.sentTask.global_task_id)

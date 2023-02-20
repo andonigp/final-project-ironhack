@@ -11,9 +11,29 @@ import { supabase } from "../supabase";
 import { useUserStore } from "../stores/user";
 
 const props = defineProps({
-  incompleteTasks: Object,
-  completedTasks: Object
+  incompleteTasks: Number,
+  completedTasks: Number
 })
+
+onMounted(() => {
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+)
+
+})
+
+onUpdated(() => {
+  console.log(props.incompleteTasks)
+  console.log(props.completedTasks)
+
+//   const myChart = new Chart(
+//     document.getElementById('myChart'),
+//     config
+// )
+
+})
+
 
 const labels = [
   "Incomplete",
@@ -24,7 +44,8 @@ const data = {
   labels: labels,
   datasets: [{
     label: "My currents tasks",
-    data: [3, 2],
+    // data: [props.incompleteTasks, props.completedTasks],
+    data: [3, 3],
     backgroundColor: ['rgb(255, 99, 132)', 'rgb(75, 192, 124, 1)'],
     // data: [completedTasks.value, incompleteTasks.value]
   }]
@@ -35,6 +56,8 @@ const config = {
   data: data,
   options: {}
 };
+
+
 
 
 
@@ -55,13 +78,7 @@ const config = {
 
 // getCount()
 
-onMounted(() => {
-  // getCount();
-  const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-)
-})
+
 
 // onUpdated(() => {
 //   getCount();

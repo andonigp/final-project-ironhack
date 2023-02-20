@@ -2,7 +2,8 @@
     <Nav />
     <div class="taskCardDesc" v-if="allowed === true">     
         <div class="taskTitle">
-            <h1>{{ taskTitle }}</h1>
+            <h1 v-if="editToggle === true">{{ taskTitle }}</h1>
+            <input class ="editTaskTitle" type="text" v-if="editToggle === false" v-model="taskTitle">
         </div>
         <div class="taskPart singleUser" v-if="singleUser === true">
             <img :src="avatar_created_Img ? avatar_created_Img : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'" alt="Profile picture">
@@ -31,12 +32,17 @@
         <hr>
         <p class="taskDesc" v-if="editToggle === true">{{ taskDescription }}</p>
         <div v-if="editToggle === false" class="textareaEdit" >
-            <textarea cols="70" rows="10">{{ taskDescription }}</textarea>
+            <textarea cols="70" rows="10" v-model="taskDescription">{{ taskDescription }}</textarea>
+            <div class="input-button">
+                <button class="button" @click="editTask">Submit Changes</button>
+            </div>
         </div>
         <div class="taskIconDesc">
             <i class="fas fa-toggle-off" @click="statusToggle" v-if="taskStatus === 'Incomplete'"></i>
             <i class="fas fa-toggle-on" @click="statusToggle" v-if="taskStatus === 'Completed'"></i>
-            <i class="fas fa-trash-alt"></i>
+            <router-link to="/" v-if="singleUser === true">
+                <i class="fas fa-trash-alt" @click="deleteTask"></i>
+            </router-link>
             <i class="fas fa-edit" @click="editToggleFunc"></i>
         </div>
     </div>
@@ -79,6 +85,7 @@ const taskDescription = ref('')
 let taskDueDate = ref('')
 const avatar_created_Img = ref('')
 const avatar_responsable_Img = ref('')
+const taskId = ref('')
 const getInfo = async() => {
     taskInfo.value = await taskStore.fetchTasksInformation(url)
     console.log(taskInfo.value[0])
@@ -119,7 +126,9 @@ const getInfo = async() => {
         
         taskDueDate.value = taskInfo.value[0].due
         // console.log(taskDueDate)
+        taskId.value = taskInfo.value[0].id
         
+
     } else {
         
         taskTitle.value = "You are not allowed to this task's detail. Sorry"
@@ -135,18 +144,17 @@ const editToggleFunc = async() => {
     console.log(editToggle.value)
 }
 
-// const deleteTask = async() => {
-//     await taskStore.deleteTask(props.task.id);
-// };
+const editTask = async() => {
+    await taskStore.editTakUpdate(url, taskTitle.value, taskDescription.value)
+    editToggle.value = true
+    console.log(editToggle.value)
+}
 
-
-// console.log(taskCreatedBy.value)
-
-// const getImages = async() => {
-//     avatar_created_Img.value = await taskStore.asignedByImg(taskCreatedBy)
-//     avatar_created_Img.value = avatar_created_Img.value[0].avatar_url
-// }
-
+const deleteTask = async() => {
+    await taskStore.deleteTask(url);
+    
+ 
+};
 
 getInfo();
 // getImages();
@@ -292,8 +300,14 @@ hr {
 
 .textareaEdit {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    gap: 10px;
 }
 
+.editTaskTitle{
+    font-size: 2rem;
+    font-weight: bold;
+}
 
 </style>

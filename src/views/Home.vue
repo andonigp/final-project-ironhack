@@ -4,8 +4,8 @@
     
     <div class="contentHome"> 
       <div class="headerReorder">
-        <NewTask :incompleteTasks = "getIncomplete" :completedTasks = "getComplete" />
-        <Graph />
+        <NewTask />
+        <Graph :incompleteTasks = "getIncomplete" :completedTasks = "getComplete" />
       </div>
     </div>
     <h1 class="homeTaskTitle">Assigned tasks:</h1>
