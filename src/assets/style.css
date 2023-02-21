@@ -609,7 +609,6 @@ textarea {
 
 .sentTaskTableElement {
     display: flex;
-
     align-items: center;
     width: 1000px;
     height: 20px;
@@ -618,6 +617,7 @@ textarea {
     padding-bottom: 5px;
     border-radius: .25rem;
     margin-bottom: 0px;
+    padding-left: 90px;
 }
 
 .sentTasksTableFlex hr {
@@ -640,7 +640,162 @@ textarea {
     border-width: 0;
 }
 
-/* Footer Bar */
+.sentTaskTableElement i {
+    margin-left: 15px;
+}
+
+.sentToLabel {
+    width: 200px;
+    white-space: nowrap;
+    text-align: start;
+    overflow: hidden;
+    text-overflow: hidden;
+    margin-left: 20px;
+}
+
+.dueDateLabel {
+    width: 100px;
+    white-space: nowrap;
+    text-align: start;
+    overflow: hidden;
+    text-overflow: hidden;
+    margin-left: 15px;
+}
+
+.titleLabel {
+    width: 400px;
+    white-space: nowrap;
+    text-align: start;
+    overflow: hidden;
+    text-overflow: hidden;
+    margin-left: 15px;
+}
+
+.completedLabel {
+    text-align: center;
+    width: 75px;
+}
+
+/* ----------------------- Task Details -----------------------*/
+.fa-exclamation-triangle {
+    font-size: 100px;
+}
+
+
+.taskCardDesc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 520px;
+    margin: auto;
+    background: white;
+    border-radius: 1rem;
+    padding: 5%;
+    box-shadow: 0px 6px 8px 0px #88888898;
+    margin-bottom: 50px;
+}
+
+.taskCardDesc h4 {
+    font-size: .8rem;
+}
+
+.taskTitle {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.taskPart {
+    width: 100%;
+}
+
+hr {
+    width: 100%;
+}
+
+.taskDesc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+    /* width: 520px;
+    max-width: 520px; */
+}
+
+.taskIdentifier {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+    gap: 60px;
+}
+
+.taskChars {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+    max-width: 520px;
+    gap: 70px;
+}
+
+#cardImgDesc {
+    height: 80px;
+    width: 80px;
+    max-height: 70%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 6px 8px 0px #88888898;
+    border: 1px solid rgba(0, 0, 0, 0.603);
+}
+
+.taskIconDesc {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 30px;
+    width: 60%;
+}
+
+.singleUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.singleUser h6 {
+    margin-bottom: 0px;
+}
+
+.singleUser img {
+    height: 140px;
+    width: 140px;
+    max-height: 70%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 6px 8px 0px #88888898;
+    border: 1px solid rgba(0, 0, 0, 0.603);
+}
+
+.textareaEdit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.editTaskTitle {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+/* ----------------------- Footer Bar -----------------------*/
 
 .footerBar {
     height: 80px;
@@ -798,4 +953,59 @@ textarea {
         width: 100%;
     }
 
+    /* ------------------------------ SEND TASK CONTAINER ------------------------------ */
+
+    .sendTaskContainer {
+        width: 90%;
+    }
+
+    .sendTaskFlex {
+        width: 90%;
+        margin: auto;
+        margin-bottom: 15px;
+    }
+
+    .sentTaskTableHeader {
+        font-size: 14px;
+        padding-left: 0px;
+        width: 100%;
+    }
+
+    .sentTaskTableElement {
+        width: 100%;
+        font-size: 11px;
+        padding-left: 0px;
+    }
+
+    .sentTaskTableElement i {
+        padding-right: 5px;
+    }
+
+    .sentTasksTableFlex hr {
+        width: 100%;
+    }
+
+    .dueDateLabel {
+        width: 200px;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    .titleLabel {
+        width: 250px;
+        margin-left: 10px;
+        text-align: center;
+    }
+
+    /* ------------------------------ TASK DETAILS ------------------------------ */
+
+    .taskEditInputs textarea {
+        width: 100%;
+    }
+
+    .taskCardDesc {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 190px;
+    }
 }

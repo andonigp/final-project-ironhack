@@ -47,44 +47,6 @@ const deleteSentTask = async() => {
 
 
 <style scoped>
-.sentTaskTableElement {
-    padding-left: 90px;
-}
 
-.sentTaskTableElement i {
-    margin-left: 15px;
-}
-
-.sentToLabel {
-    width: 200px;
-    white-space: nowrap;
-    text-align: start;
-    overflow: hidden;
-    text-overflow: hidden;
-    margin-left: 20px;
-}
-
-.dueDateLabel {
-    width: 100px;
-    white-space: nowrap;
-    text-align: start;
-    overflow: hidden;
-    text-overflow: hidden;
-    margin-left: 15px;
-}
-
-.titleLabel {
-    width: 400px;
-    white-space: nowrap;
-    text-align: start;
-    overflow: hidden;
-    text-overflow: hidden;
-    margin-left: 15px;
-}
-
-.completedLabel {
-    text-align: center;
-    width: 75px;
-}
 
 </style>
