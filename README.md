@@ -42,9 +42,14 @@
 #### Day Five
 ###### Lunes 20, Febrero 2023
 - [ ] Conectar gráfica de status.
-- [ ] Hamburguer Menu.
+- [x] Hamburguer Menu.
 - [ ] Confirm email con redirección al sign in.
-- [ ] Rediseño de footer.
+- [x] Rediseño de footer.
 
+#### Day Six
+###### Martes 21, Febrero 2023
+- [ ] Conectar gráfica de status.
+- [ ] Confirm email con redirección al sign in.
+- [ ] Posibilidad de generar alertas por correo tras ser asignado una tarea.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
