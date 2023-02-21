@@ -1008,4 +1008,38 @@ hr {
         margin: auto;
         margin-bottom: 190px;
     }
+
+    /* ------------------------------ PROFILE ------------------------------ */
+    .accountContainer {
+        width: 90%;
+    }
+
+    .accauntContainerHeader {
+        height: 300px;
+    }
+
+    .accauntContainerHeader img {
+        height: 50%;
+        width: 38%;
+        max-height: 50%;
+    }
+
+    .accauntContainerHeader h1 {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 25px;
+    }
+
+    .accauntContainerData {
+        gap: 25px
+    }
+
+    .accauntContainerData label {
+        /* font-style: italic; */
+        font-size: 11px;
+    }
+
+    .accauntContainerData h4 {
+        font-size: 13px;
+    }
 }
