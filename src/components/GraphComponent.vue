@@ -95,8 +95,8 @@ const data = {
   datasets: [
     {
       backgroundColor: ['rgb(255, 99, 132)', 'rgb(75, 192, 124, 1)'],
-      // data: [6, 4],
-      data: [props.incompleteTasks.length, props.completedTasks.length]
+      data: [6, 4],
+      // data: [props.incompleteTasks.length, props.completedTasks.length]
     }
   ]
 }

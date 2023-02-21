@@ -495,8 +495,9 @@ textarea {
     border-radius: .75rem;
     border-color: rgb(170, 170, 170);
     padding: 50px;
+    max-width: 685px;
     width: 100%;
-    margin: auto;
+    background: white;
 }
 
 .sendTaskContainer label {
@@ -505,12 +506,10 @@ textarea {
 }
 
 .sendTaskContainer input {
-    width: 80%;
+    width: 100%;
 }
 
-.sendTaskContainer {
-    background: white;
-}
+
 
 
 .sentTasksTableFlex {
@@ -745,7 +744,7 @@ textarea {
     }
 
     .contentNewTask {
-        width: 80%;
+        width: 100%;
     }
 
     .contentNewTask textarea {
