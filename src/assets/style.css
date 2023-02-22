@@ -260,8 +260,9 @@ nav {
     display: flex;
     align-items: center;
     max-width: 1280px;
-    gap: 20px;
+    gap: 10px;
     justify-content: flex-end;
+    margin-bottom: 20px;
 }
 
 .orderTaskByDD {
@@ -988,6 +989,7 @@ hr {
     .orderTaskBy {
         justify-content: center;
         max-width: 90%;
+        margin-bottom: 20px;
     }
 
     .homeTaskTitleSection {
@@ -1005,7 +1007,10 @@ hr {
         display: none;
     }
 
-
+    .homeOrderBySection {
+        gap: 5px;
+        margin-bottom: 10px;
+    }
 
     /* ------------------------------ SEND TASK CONTAINER ------------------------------ */
 
