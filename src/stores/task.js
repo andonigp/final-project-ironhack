@@ -8,11 +8,11 @@ import { useUserStore } from "./user";
 
 export const useTaskStore = defineStore("tasks", () => {
   const tasksArr = ref(null);
-  const fetchTasks = async () => {
+  const fetchTasks = async (orderBy, orderFlow) => {
     const { data: tasks } = await supabase
       .from("tasks")
       .select("*")
-      .order("is_complete", { ascending: true })
+      .order(orderBy, { ascending: orderFlow })
       .match({ user_id: useUserStore().user.id });
     tasksArr.value = tasks;
     return tasksArr.value;

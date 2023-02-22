@@ -253,6 +253,29 @@ nav {
     gap: 10px;
 }
 
+.headerReorder {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.orderTaskBy {
+    display: flex;
+    align-items: center;
+    max-width: 1350px;
+    margin: auto;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.orderTaskByDD {
+    font-size: 20px;
+    border-radius: 0.5rem;
+    width: 200px;
+    color: black;
+}
+
 /* New Task */
 
 .contentNewTask {
@@ -951,6 +974,11 @@ hr {
 
     .taskContainer .taskIcon:hover {
         width: 100%;
+    }
+
+    .orderTaskBy {
+        justify-content: space-between;
+        max-width: 90%;
     }
 
     /* ------------------------------ SEND TASK CONTAINER ------------------------------ */

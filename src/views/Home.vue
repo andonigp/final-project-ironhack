@@ -13,6 +13,21 @@
       </div>
     </div>
     <h1 class="homeTaskTitle">Assigned tasks:</h1>
+    <div class="orderTaskBy">
+      <select class="orderTaskByDD" v-model="orderFlow">
+        <option value="" disabled selected hidden>A -> Z / Z -> A</option>
+        <option :value="true">Ascending</option>
+        <option :value="false">Descending</option>
+      </select>
+      <select class="orderTaskByDD" v-model="orderTask">
+        <option value="" disabled selected hidden>Order tasks by:</option>
+        <option value="id">Creation</option>
+        <option value="asignedBy">Created by</option>
+        <option value="is_complete">Status</option>
+        <option value="due">Due date</option>
+        <option value="title">Title</option>
+      </select>
+    </div>
     <div class="taskWrapper">
       <TaskItem
         class="taskContainer"
@@ -45,10 +60,13 @@ const tasks = ref([]);
 const getIncomplete = ref([]);
 const getComplete = ref([]);
 
+const orderTask = ref("id");
+const orderFlow = ref(false);
+
 // Creamos una función que conecte a la store para conseguir las tareas de supabase
 
 const getTasks = async () => {
-  tasks.value = await taskStore.fetchTasks();
+  tasks.value = await taskStore.fetchTasks(orderTask.value, orderFlow.value);
   // console.log("GET TASKS");
   getIncomplete.value = tasks.value.filter((task) => !task.is_complete);
   getComplete.value = tasks.value.filter((task) => task.is_complete);
@@ -60,10 +78,4 @@ getTasks();
 
 
 <style>
-.headerReorder {
-  display: flex;
-  justify-content: space-between;
-  gap: 50px;
-  flex-wrap: wrap;
-}
 </style>
