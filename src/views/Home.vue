@@ -12,21 +12,26 @@
         />
       </div>
     </div>
-    <h1 class="homeTaskTitle">Assigned tasks:</h1>
     <div class="orderTaskBy">
-      <select class="orderTaskByDD" v-model="orderFlow">
-        <option value="" disabled selected hidden>A -> Z / Z -> A</option>
-        <option :value="true">Ascending</option>
-        <option :value="false">Descending</option>
-      </select>
-      <select class="orderTaskByDD" v-model="orderTask">
-        <option value="" disabled selected hidden>Order tasks by:</option>
-        <option value="id">Creation</option>
-        <option value="asignedBy">Created by</option>
-        <option value="is_complete">Status</option>
-        <option value="due">Due date</option>
-        <option value="title">Title</option>
-      </select>
+      <div class="homeTaskTitleSection">
+        <h1 class="homeTaskTitle">Assigned tasks:</h1>
+      </div>
+      <div class="homeOrderBySection">
+        <label for="">Order by:</label>
+        <select class="orderTaskByDD" v-model="orderFlow">
+          <option value="" disabled selected hidden>A -> Z / Z -> A</option>
+          <option :value="true">Ascending</option>
+          <option :value="false">Descending</option>
+        </select>
+        <select class="orderTaskByDD" v-model="orderTask">
+          <option value="" disabled selected hidden>Order tasks by:</option>
+          <option value="id">Creation</option>
+          <option value="asignedBy">Created by</option>
+          <option value="is_complete">Status</option>
+          <option value="due">Due date</option>
+          <option value="title">Title</option>
+        </select>
+      </div>
     </div>
     <div class="taskWrapper">
       <TaskItem

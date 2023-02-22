@@ -30,7 +30,7 @@ export const useSendUser = defineStore("sendUser", () => {
         ])
     };
 
-    const sendTask = async (sentTo, sentTitle, description, global_task_id) => {
+    const sendTask = async (sentTo, sentTitle, description, global_task_id, due_date) => {
         console.log("Sending Task");
         const { data, error } = await supabase.from("tasks").insert([
             {
@@ -40,6 +40,7 @@ export const useSendUser = defineStore("sendUser", () => {
                 description: description,
                 global_task_id: global_task_id,
                 asignedBy: useUserStore().user.email,
+                due: due_date
             }
         ])
     };

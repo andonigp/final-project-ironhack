@@ -237,10 +237,6 @@ nav {
 
 .homeTaskTitle {
     text-align: start;
-    max-width: 1340px;
-    margin: auto;
-    margin-top: 40px;
-    margin-bottom: 40px;
 }
 
 .taskWrapper {
@@ -255,25 +251,38 @@ nav {
 
 .headerReorder {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 50px;
     flex-wrap: wrap;
 }
 
-.orderTaskBy {
+.homeOrderBySection {
     display: flex;
     align-items: center;
-    max-width: 1350px;
-    margin: auto;
-    margin-bottom: 40px;
+    max-width: 1280px;
     gap: 20px;
+    justify-content: flex-end;
 }
 
 .orderTaskByDD {
-    font-size: 20px;
+    font-size: 15px;
     border-radius: 0.5rem;
     width: 200px;
-    color: black;
+    color: white;
+    background-color: #203267;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.orderTaskBy {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: auto;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
 }
 
 /* New Task */
@@ -977,9 +986,26 @@ hr {
     }
 
     .orderTaskBy {
-        justify-content: space-between;
+        justify-content: center;
         max-width: 90%;
     }
+
+    .homeTaskTitleSection {
+        width: 90%;
+        text-align: center;
+    }
+
+    .homeTaskTitle {
+        margin: auto;
+        margin-top: 40px;
+        margin-bottom: 25px;
+    }
+
+    .homeOrderBySection label {
+        display: none;
+    }
+
+
 
     /* ------------------------------ SEND TASK CONTAINER ------------------------------ */
 
