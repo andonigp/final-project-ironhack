@@ -48,8 +48,14 @@
 
 #### Day Six
 ###### Martes 21, Febrero 2023
-- [ ] Conectar gráfica de status.
-- [ ] Confirm email con redirección al sign in.
+- [x] Conectar gráfica de status.
+- [x] Confirm email con redirección al sign in.
 - [ ] Posibilidad de generar alertas por correo tras ser asignado una tarea.
+
+
+#### Day Seven
+###### Miercoles 22, Febrero 2023
+- [ ] Crear cronometro regresivo para la expiración de las tareas.
+- [ ] Crear un filtro al mostrar las tareas en home.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
