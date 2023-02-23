@@ -105,6 +105,7 @@ import Footer from "../components/Footer.vue";
 
 const taskStore = useTaskStore();
 
+
 //  ------------------ Get URL Instance -----------------
 function getCurrentURL() {
   return window.location.href;

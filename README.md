@@ -50,12 +50,16 @@
 ###### Martes 21, Febrero 2023
 - [x] Conectar gráfica de status.
 - [x] Confirm email con redirección al sign in.
-- [ ] Posibilidad de generar alertas por correo tras ser asignado una tarea.
-
 
 #### Day Seven
 ###### Miercoles 22, Febrero 2023
-- [ ] Crear cronometro regresivo para la expiración de las tareas.
-- [ ] Crear un filtro al mostrar las tareas en home.
+- [ ] Posibilidad de generar alertas por correo tras ser asignado una tarea.
+- [x] Crear un filtro al mostrar las tareas en home.
+
+#### Day Eight
+###### Jueves 23, Febrero 2023
+- [ ] Últimas revisiones de funcionalidad.
+- [ ] Últimas revisiones vs MVP (Rúbrica Ironhack).
+- [ ] Redacción completa del README.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
