@@ -83,7 +83,7 @@
         v-if="taskStatus === 'Completed'"
       ></i>
       <router-link to="/" v-if="singleUser === true">
-        <i class="fas fa-trash-alt" @click="deleteTask"></i>
+        <i class="fas fa-trash-alt" @dblclick="deleteTask"></i>
       </router-link>
       <i class="fas fa-edit" @click="editToggleFunc"></i>
     </div>

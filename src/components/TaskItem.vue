@@ -19,7 +19,7 @@
         <div class="taskIcon">
             <i class="fas fa-toggle-off" @click="changeStatus" v-if="statusIcon === false"></i>
             <i class="fas fa-toggle-on" @click="changeStatus" v-if="statusIcon === true"></i>
-            <i class="fas fa-trash-alt" @click="deleteTask" v-if="isSent"></i>
+            <i class="fas fa-trash-alt" @dblclick="deleteTask" v-if="isSent"></i>
             <i class="fas fa-edit" @click="etOptionSwap"></i>
             <router-link :to="taskId">
                 <i class="fas fa-info-circle"></i>

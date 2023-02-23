@@ -1,7 +1,7 @@
 <template>
 
     <div class="sentTaskTableElement">
-        <i class="fas fa-trash-alt" @click="deleteSentTask" ></i>
+        <i class="fas fa-trash-alt" @dblclick="deleteSentTask" ></i>
         <label class="sentToLabel" for="to">{{ sentTask.asignedTo }}</label>
         <label class="dueDateLabel" for="due">{{ sentTask.due }}</label>
         <label class="titleLabel" for="title">{{ sentTask.title }}</label>
