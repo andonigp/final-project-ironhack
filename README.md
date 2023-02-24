@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img src="./assets/images/logo.png" alt="Logo" width="120" height="80">
+  <img src="./assets/images/logo.png" alt="Logo" width="140" height="80">
   <h3 align="center">Mind Capital - Task Manager</h3>
   <a href="https://final-project-ironhack-seven.vercel.app/auth/login">Visit Website</a>
 </div>
