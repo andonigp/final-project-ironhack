@@ -1,3 +1,47 @@
+<a name="readme-top"></a>
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <img src="./assets/images/logo.png" alt="Logo" width="80" height="80">
+  <h3 align="center">Mind Capital - Task Manager</h3>
+  <a href="https://final-project-ironhack-seven.vercel.app/auth/login">Visit Website</a>
+</div>
+
+
+<!-- ABOUT THE PROJECT -->
+
+## Acerca del Proyecto
+
+<img src="./resources/readMe/screenshot.png" alt="Logo" width="100%" height="50%">
+
+Información general del proyecto:
+
+ - Se desarrollo una plataforma digital, en la cual el usuario puede registrar tareas por hacer y enviar tareas a otros usuarios registrados en la plataforma.
+ - La plataforma permite editar, eliminar, cambiar el status de las tareas pendientes.
+ - Para el desarrollo de la plataforma se utilizo el framework VUE.js, respaldado en github y el deploy fue hecho con vercel.
+ - Las funcionalidades principales son: 
+    - Registrar tareas propias.
+    - Enviar tareas a otros usuarios.
+    - Editar tareas.
+    - Eliminar tareas.
+    - Cambiar status de la tarea.
+    - Revisar a detalle las tareas.
+    - Llevar tracking de las tareas enviadas.
+    - Llevar tracking de las tareas propias por realizar.
+    - Editar perfil del usuario.
+ - El proyecto fue asesorado y revisado por expertos de IronHack (Diego Zito, Carlos Garrido (AKA Jarko), Aleix Abuli)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Construido Con
+
+ - Lenguajes de programación: HTML , CSS , JavaScript en framework VUE.js
+ - Contol de versiones: GitHub, Vercel
+ - Desarrollado localmente con: Microsoft Visual Code.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Roadmap
 
 #### Backlog
@@ -58,8 +102,35 @@
 
 #### Day Eight
 ###### Jueves 23, Febrero 2023
-- [ ] Últimas revisiones de funcionalidad.
-- [ ] Últimas revisiones vs MVP (Rúbrica Ironhack).
-- [ ] Redacción completa del README.
+- [x] Últimas revisiones de funcionalidad.
+- [x] Últimas revisiones vs MVP (Rúbrica Ironhack).
+- [x] Redacción completa del README.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Acerca de mi -->
+
+## Acerca
+
+Acerca del equipo de desarrollo:
+
+  - Andoni Goicoechea Pederzini. andoni.gope@gmail.com
+  - Frontend developer.
+  - Master Big Data Analytics and Technologies.
+  - 5 años de experiencia.
+
+Project Link: [https://github.com/andonigp/ironhack-midterm]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+
+## Agradecimientos
+
+ - Agradecimientos:
+    - Diego Zito - Lead Teacher
+    - Carlos Garrido (Jarko) - Teacher Assistant
+    - Aleix Abuli - Teacher Assistant.
+ - Agradecimiento a IronHack.   
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
