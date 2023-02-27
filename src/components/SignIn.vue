@@ -24,8 +24,8 @@
     <div v-show="errorMsg">{{errorMsg}}</div>
     
     
-    <!-- <p>Dont have an account? <PersonalRouter :route="route" :buttonText="buttonText" class="sign-up-link"/></p> -->
-    <p>Dont have an account? <a href="https://mindcapital.com.mx/">Contact us</a></p>
+    <p>Dont have an account? <PersonalRouter :route="route" :buttonText="buttonText" class="sign-up-link"/></p>
+    <!-- <p>Dont have an account? <a href="https://mindcapital.com.mx/">Contact us</a></p> -->
   </div>
 
 </template>
