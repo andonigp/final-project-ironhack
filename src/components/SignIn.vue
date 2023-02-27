@@ -5,7 +5,7 @@
   <div class="signInContainer">
     <img src="../../assets/images/logo.png" alt="">
     <h1>Welcome to Mind Capital <br>
-    Task Manager</h1>
+    System</h1>
     <h3>Sign In</h3>
 
     <form @submit.prevent="signIn">
@@ -24,7 +24,8 @@
     <div v-show="errorMsg">{{errorMsg}}</div>
     
     
-    <p>Dont have an account? <PersonalRouter :route="route" :buttonText="buttonText" class="sign-up-link"/></p>
+    <!-- <p>Dont have an account? <PersonalRouter :route="route" :buttonText="buttonText" class="sign-up-link"/></p> -->
+    <p>Dont have an account? <a href="https://mindcapital.com.mx/empresa">Contact us</a></p>
   </div>
 
 </template>
