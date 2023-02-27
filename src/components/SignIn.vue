@@ -25,7 +25,7 @@
     
     
     <!-- <p>Dont have an account? <PersonalRouter :route="route" :buttonText="buttonText" class="sign-up-link"/></p> -->
-    <p>Dont have an account? <a href="https://mindcapital.com.mx/empresa">Contact us</a></p>
+    <p>Dont have an account? <a href="mindcapital.com.mx/">Contact us</a></p>
   </div>
 
 </template>
